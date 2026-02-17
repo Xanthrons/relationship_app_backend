@@ -228,7 +228,7 @@ exports.pairCouple = async (req, res) => {
         // --- NEW REAL-TIME NOTIFICATION LOGIC ---
         const io = req.app.get('socketio');
         // We notify everyone in the room named after the inviteCode
-        io.to(cleanCode).emit('partner_paired');
+        io.to(cleanCode).emit('partner_paired'); 
         // ----------------------------------------
         
         res.json({ 
