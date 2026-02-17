@@ -225,6 +225,12 @@ exports.pairCouple = async (req, res) => {
 
         await dbClient.query('COMMIT');
         
+        // --- NEW REAL-TIME NOTIFICATION LOGIC ---
+        const io = req.app.get('socketio');
+        // We notify everyone in the room named after the inviteCode
+        io.to(cleanCode).emit('partner_paired');
+        // ----------------------------------------
+        
         res.json({ 
             message: "Successfully paired!", 
             rel_status: targetCouple.rel_status, 
