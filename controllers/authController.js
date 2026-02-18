@@ -484,19 +484,45 @@ exports.deleteSharedPicture = async (req, res) => {
 // --- HELPERS & ACCOUNT MANAGEMENT ---
 
 exports.getMe = async (req, res) => {
-    try {
-        const result = await pool.query(
-            'SELECT users.*, couples.status as couple_status FROM users LEFT JOIN couples ON users.couple_id = couples.id WHERE users.id = $1', 
-            [req.user.id]
-        );
-        const user = result.rows[0];
-        if (!user) return res.status(404).json({ error: "User not found" });
-        delete user.password_hash;
-        res.json(user);
-    } catch (err) {
-        res.status(500).json({ error: "Server error" });
-    }
+  const userId = req.user.id;
+
+  try {
+    const result = await pool.query(`
+      SELECT 
+        u.id,
+        u.name,
+        u.couple_id,
+        c.invite_code,
+        u.onboarded,
+        c.status,
+        c.creator_id,
+        c.rel_status
+      FROM users u
+      LEFT JOIN couples c ON u.couple_id = c.id
+      WHERE u.id = $1
+    `, [userId]);
+
+    const user = result.rows[0];
+
+    res.json({
+      id: user.id,
+      name: user.name,
+      coupleId: user.couple_id,
+      inviteCode: user.invite_code,
+      inviteLink: user.invite_code
+        ? generateInviteLink(user.invite_code)
+        : null,
+      coupleStatus: user.status,
+      relationshipType: user.rel_status,
+      isCreator: user.creator_id === userId
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch user data" });
+  }
 };
+
 
 exports.googleAuth = async (req, res) => {
     const { idToken } = req.body;
