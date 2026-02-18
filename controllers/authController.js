@@ -384,13 +384,16 @@ exports.submitWelcomeAnswers = async (req, res) => {
 
         if (!coupleId) return res.status(400).json({ error: "No couple connection found" });
 
-        // Merge JSONB answers
+        // 1. Save answers to couples table
         await pool.query(
-            `UPDATE couples SET answers = answers || $1 WHERE id = $2`,
+            `UPDATE couples SET answers = COALESCE(answers, '{}'::jsonb) || $1 WHERE id = $2`,
             [JSON.stringify({ [userId]: answers }), coupleId]
         );
+
+        // 2. IMPORTANT: Update the USER to show they finished the questions
+        await pool.query('UPDATE users SET onboarded = true WHERE id = $1', [userId]);
         
-        res.json({ message: "Answers saved!" });
+        res.json({ message: "Answers saved!", onboarded: true });
     } catch (err) {
         res.status(500).json({ error: "Failed to save answers" });
     }
@@ -489,32 +492,32 @@ exports.getMe = async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT 
-        u.id,
-        u.name,
-        u.couple_id,
-        c.invite_code,
-        u.onboarded,
-        c.status,
-        c.creator_id,
-        c.rel_status
+        u.id, u.name, u.couple_id, u.onboarded,
+        c.invite_code, c.status, c.creator_id, c.rel_status
       FROM users u
       LEFT JOIN couples c ON u.couple_id = c.id
       WHERE u.id = $1
     `, [userId]);
 
-    const user = result.rows[0];
+    const row = result.rows[0];
+
+    // Determine the "mode" for the TrafficController
+    let mode = "solo";
+    if (row.couple_id) {
+        mode = (row.status === 'full') ? "couple" : "waiting";
+    }
 
     res.json({
-      id: user.id,
-      name: user.name,
-      coupleId: user.couple_id,
-      inviteCode: user.invite_code,
-      inviteLink: user.invite_code
-        ? generateInviteLink(user.invite_code)
-        : null,
-      coupleStatus: user.status,
-      relationshipType: user.rel_status,
-      isCreator: user.creator_id === userId
+      id: row.id,
+      name: row.name,
+      coupleId: row.couple_id,
+      onboarded: row.onboarded, // Needed for WelcomeQuestions logic
+      mode: mode,               // CRUCIAL: App.jsx uses this!
+      inviteCode: row.invite_code,
+      inviteLink: row.invite_code ? generateInviteLink(row.invite_code) : null,
+      coupleStatus: row.status,
+      relationshipType: row.rel_status,
+      isCreator: row.creator_id === userId
     });
 
   } catch (err) {
