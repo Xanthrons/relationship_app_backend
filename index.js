@@ -11,8 +11,14 @@ const app = express();
 const server = http.createServer(app); // 3. Wrap app
 const io = new Server(server, {
     cors: {
-        origin: process.env.FRONTEND_URL || "http://localhost:3000",
-        methods: ["GET", "POST"]
+        // Add both common React ports just to be safe
+        origin: [
+            "http://localhost:5173", 
+            "http://localhost:3000", 
+            process.env.FRONTEND_URL
+        ].filter(Boolean),
+        methods: ["GET", "POST"],
+        credentials: true
     }
 });
 
