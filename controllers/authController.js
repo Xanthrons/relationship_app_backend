@@ -92,13 +92,12 @@ exports.onboardCreator = async (req, res) => {
     try {
         await dbClient.query('BEGIN');
         
-        // 1. Update User Identity
-        const userUpdate = await dbClient.query(
-            'UPDATE users SET nickname = $1, avatar_id = $2, gender = $3 WHERE id = $4 RETURNING id',
+        // 1. Update User Identity AND set onboarded = true for the creator
+        // because they just answered all their questions.
+        await dbClient.query(
+            'UPDATE users SET nickname = $1, avatar_id = $2, gender = $3, onboarded = true WHERE id = $4',
             [nickname, avatar_id, gender, userId]
         );
-
-        if (userUpdate.rowCount === 0) throw new Error("USER_NOT_FOUND");
 
         // 2. Create Couple Record
         const inviteCode = Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -159,21 +158,15 @@ exports.getInviteDetails = async (req, res) => {
 
 exports.pairCouple = async (req, res) => {
     if (!req.user || !req.user.id) {
-        return res.status(401).json({ error: "Authentication failed. Please log in again." });
+        return res.status(401).json({ error: "Authentication failed." });
     }
 
     const userId = req.user.id; 
     const { inviteCode, nickname, avatar_id } = req.body;
-
-    if (!inviteCode) {
-        return res.status(400).json({ error: "Please enter your partner's invite code." });
-    }
-
     const dbClient = await pool.connect();
 
     try {
         await dbClient.query('BEGIN');
-
         const cleanCode = inviteCode.trim().toUpperCase();
         
         const targetRes = await dbClient.query(
@@ -186,38 +179,31 @@ exports.pairCouple = async (req, res) => {
 
         if (targetRes.rows.length === 0) {
             await dbClient.query('ROLLBACK');
-            return res.status(400).json({ error: "That code is invalid or has already been used." });
+            return res.status(400).json({ error: "Invalid or expired code." });
         }
         
         const targetCouple = targetRes.rows[0];
-
         if (targetCouple.creator_id === userId) {
             await dbClient.query('ROLLBACK');
-            return res.status(400).json({ error: "You cannot join your own world. Send this code to your partner!" });
+            return res.status(400).json({ error: "You cannot join your own world." });
         }
 
-        // 4. GHOST CLEANUP (Restored)
-        const userRes = await dbClient.query('SELECT couple_id FROM users WHERE id = $1', [userId]);
-        const currentCoupleId = userRes.rows[0]?.couple_id;
-        
-        if (currentCoupleId && currentCoupleId !== targetCouple.id) {
-            await dbClient.query("DELETE FROM couples WHERE id = $1 AND status = 'waiting'", [currentCoupleId]);
-        }
-
-        // 5. AUTO-GENDER & IDENTITY UPDATE (Restored)
+        // Auto-gender logic
         const joinerGender = targetCouple.creator_gender === 'Boy' ? 'Girl' : 'Boy';
 
+        // UPDATE JOINER: Set their mode to 'couple' but onboarded to FALSE
         await dbClient.query(
             `UPDATE users SET 
                 nickname = COALESCE($1, nickname), 
                 avatar_id = COALESCE($2, avatar_id), 
                 gender = $3, 
-                couple_id = $4 
+                couple_id = $4,
+                onboarded = false 
              WHERE id = $5`,
             [nickname || null, avatar_id || null, joinerGender, targetCouple.id, userId]
         );
 
-        // 6. FINALIZE COUPLE
+        // UPDATE COUPLE: Finalize status
         await dbClient.query(
             "UPDATE couples SET partner_id = $1, status = 'full' WHERE id = $2",
             [userId, targetCouple.id]
@@ -225,21 +211,13 @@ exports.pairCouple = async (req, res) => {
 
         await dbClient.query('COMMIT');
         
-        // --- NEW REAL-TIME NOTIFICATION LOGIC ---
         const io = req.app.get('socketio');
-        // We notify everyone in the room named after the inviteCode
         io.to(cleanCode).emit('partner_paired'); 
-        // ----------------------------------------
         
-        res.json({ 
-            message: "Successfully paired!", 
-            rel_status: targetCouple.rel_status, 
-            coupleId: targetCouple.id 
-        });
+        res.json({ message: "Successfully paired!", coupleId: targetCouple.id });
     } catch (err) {
         await dbClient.query('ROLLBACK');
-        console.error("❌ PAIRING ERROR:", err.message);
-        res.status(500).json({ error: "Connection failed. Please check the code and try again." });
+        res.status(500).json({ error: "Connection failed." });
     } finally {
         dbClient.release();
     }
@@ -315,6 +293,36 @@ exports.getDashboard = async (req, res) => {
     }
 };
 
+exports.getDashboardDetails = async (req, res) => {
+    const userId = req.user.id;
+    try {
+        const result = await pool.query(`
+            SELECT 
+                u.couple_id,
+                c.invite_code,
+                p.nickname as partner_nickname,
+                p.avatar_id as partner_avatar_id,
+                p.onboarded as partner_onboarded
+            FROM users u
+            JOIN couples c ON u.couple_id = c.id
+            LEFT JOIN users p ON (c.partner_id = p.id OR c.creator_id = p.id) AND p.id != $1
+            WHERE u.id = $1
+        `, [userId]);
+
+        if (result.rows.length === 0) return res.status(404).json({ error: "No dashboard data" });
+        
+        const data = result.rows[0];
+        res.json({
+            inviteCode: data.invite_code,
+            partner_nickname: data.partner_nickname,
+            partner_avatar_id: data.partner_avatar_id,
+            partner_onboarded: data.partner_onboarded // Tells creator if partner is still in WelcomeQuestions
+        });
+    } catch (err) {
+        res.status(500).json({ error: "Error fetching dashboard details" });
+    }
+};
+
 exports.unlinkCouple = async (req, res) => {
     const userId = req.user.id; 
     const dbClient = await pool.connect();
@@ -357,7 +365,7 @@ exports.submitWelcomeAnswers = async (req, res) => {
     const dbClient = await pool.connect();
     
     try {
-        await dbClient.query('BEGIN'); // Start transaction
+        await dbClient.query('BEGIN');
 
         const userRes = await dbClient.query('SELECT couple_id FROM users WHERE id = $1', [userId]);
         const coupleId = userRes.rows[0]?.couple_id;
@@ -367,21 +375,21 @@ exports.submitWelcomeAnswers = async (req, res) => {
             return res.status(400).json({ error: "No couple connection found" });
         }
 
-        // 1. Save answers to couples table
-        // We use $1::jsonb to be explicit with Postgres
+        // 1. Save individual answers into the JSONB column
+        // We use the UserID as a key so both partners' answers live in one object
         await dbClient.query(
             `UPDATE couples SET answers = COALESCE(answers, '{}'::jsonb) || $1::jsonb WHERE id = $2`,
             [JSON.stringify({ [userId]: answers }), coupleId]
         );
 
-        // 2. Update the USER (This is likely where it was failing)
+        // 2. IMPORTANT: Set THIS user to onboarded = true
+        // This allows them to move from WelcomeQuestions -> Dashboard
         await dbClient.query('UPDATE users SET onboarded = true WHERE id = $1', [userId]);
         
-        await dbClient.query('COMMIT'); // Success!
+        await dbClient.query('COMMIT');
         res.json({ message: "Answers saved!", success: true });
     } catch (err) {
-        await dbClient.query('ROLLBACK'); // Something failed, undo changes
-        console.error("DETAILED ERROR:", err); // CHECK YOUR RENDER LOGS FOR THIS
+        await dbClient.query('ROLLBACK');
         res.status(500).json({ error: "Server failed to finalize onboarding" });
     } finally {
         dbClient.release();
@@ -481,36 +489,37 @@ exports.getMe = async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT 
-        u.id, u.name, u.couple_id, u.onboarded,
-        c.invite_code, c.status, c.creator_id, c.rel_status
+        u.id, u.name, u.nickname, u.couple_id, u.onboarded, u.avatar_id,
+        c.invite_code, c.status as couple_status, c.creator_id, c.rel_status
       FROM users u
       LEFT JOIN couples c ON u.couple_id = c.id
       WHERE u.id = $1
     `, [userId]);
 
     const row = result.rows[0];
+    if (!row) return res.status(404).json({ error: "User not found" });
 
-    // Determine the "mode" for the TrafficController
+    // Determine the "mode" for the TrafficController logic in App.jsx
     let mode = "solo";
     if (row.couple_id) {
-        mode = (row.status === 'full') ? "couple" : "waiting";
+        // If the couple record exists but status is waiting, user is in 'waiting' mode
+        mode = (row.couple_status === 'full') ? "couple" : "waiting";
     }
 
     res.json({
       id: row.id,
       name: row.name,
+      nickname: row.nickname,
+      avatar_id: row.avatar_id,
       coupleId: row.couple_id,
-      onboarded: row.onboarded, // Needed for WelcomeQuestions logic
-      mode: mode,               // CRUCIAL: App.jsx uses this!
+      onboarded: row.onboarded, 
+      mode: mode,               
       inviteCode: row.invite_code,
       inviteLink: row.invite_code ? generateInviteLink(row.invite_code) : null,
-      coupleStatus: row.status,
-      relationshipType: row.rel_status,
       isCreator: row.creator_id === userId
     });
 
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: "Failed to fetch user data" });
   }
 };
