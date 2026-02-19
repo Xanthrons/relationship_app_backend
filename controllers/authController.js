@@ -377,25 +377,37 @@ exports.unlinkCouple = async (req, res) => {
 exports.submitWelcomeAnswers = async (req, res) => {
     const userId = req.user.id; 
     const { answers } = req.body; 
+    const dbClient = await pool.connect();
     
     try {
-        const userRes = await pool.query('SELECT couple_id FROM users WHERE id = $1', [userId]);
+        await dbClient.query('BEGIN'); // Start transaction
+
+        const userRes = await dbClient.query('SELECT couple_id FROM users WHERE id = $1', [userId]);
         const coupleId = userRes.rows[0]?.couple_id;
 
-        if (!coupleId) return res.status(400).json({ error: "No couple connection found" });
+        if (!coupleId) {
+            await dbClient.query('ROLLBACK');
+            return res.status(400).json({ error: "No couple connection found" });
+        }
 
         // 1. Save answers to couples table
-        await pool.query(
-            `UPDATE couples SET answers = COALESCE(answers, '{}'::jsonb) || $1 WHERE id = $2`,
+        // We use $1::jsonb to be explicit with Postgres
+        await dbClient.query(
+            `UPDATE couples SET answers = COALESCE(answers, '{}'::jsonb) || $1::jsonb WHERE id = $2`,
             [JSON.stringify({ [userId]: answers }), coupleId]
         );
 
-        // 2. IMPORTANT: Update the USER to show they finished the questions
-        await pool.query('UPDATE users SET onboarded = true WHERE id = $1', [userId]);
+        // 2. Update the USER (This is likely where it was failing)
+        await dbClient.query('UPDATE users SET onboarded = true WHERE id = $1', [userId]);
         
-        res.json({ message: "Answers saved!", onboarded: true });
+        await dbClient.query('COMMIT'); // Success!
+        res.json({ message: "Answers saved!", success: true });
     } catch (err) {
-        res.status(500).json({ error: "Failed to save answers" });
+        await dbClient.query('ROLLBACK'); // Something failed, undo changes
+        console.error("DETAILED ERROR:", err); // CHECK YOUR RENDER LOGS FOR THIS
+        res.status(500).json({ error: "Server failed to finalize onboarding" });
+    } finally {
+        dbClient.release();
     }
 };
 
