@@ -285,56 +285,33 @@ exports.getInvitePreview = async (req, res) => {
 };
 
 exports.getDashboard = async (req, res) => {
-    const userId = req.user.id; 
-
+    const userId = req.user.id;
     try {
-        // 1. Get the User and their Couple info
+        // Fetch everything we need for the user and their couple status
         const userRes = await pool.query(
-            `SELECT u.couple_id, u.gender, c.status, c.rel_status, c.shared_image_url, c.created_at
-             FROM users u
-             LEFT JOIN couples c ON u.couple_id = c.id
+            `SELECT u.id, u.onboarded, u.couple_id, c.status as couple_status 
+             FROM users u 
+             LEFT JOIN couples c ON u.couple_id = c.id 
              WHERE u.id = $1`,
             [userId]
         );
 
-        const userData = userRes.rows[0];
+        const user = userRes.rows[0];
 
-        // If no couple_id, they are strictly solo
-        if (!userData || !userData.couple_id) {
-            return res.json({ 
-                mode: "solo", 
-                message: "You are in Solo Mode. Onboard or join a partner to see your dashboard." 
-            });
-        }
-
-        // 2. Find the Partner (the other person in the same couple_id)
-        const partnerRes = await pool.query(
-            `SELECT id, nickname, avatar_id, gender 
-             FROM users 
-             WHERE couple_id = $1 AND id != $2`,
-            [userData.couple_id, userId]
-        );
-
-        const partner = partnerRes.rows[0] || null;
-
-        // 3. Construct Response based on status
+        // This is the data object the TrafficController and Dashboard will use
         res.json({
-            mode: userData.status === 'full' ? 'couple' : 'waiting',
-            relationship: {
-                type: userData.rel_status,
-                since: userData.created_at,
-                sharedImage: userData.shared_image_url || null
-            },
-            partner: partner ? {
-                nickname: partner.nickname,
-                avatar_id: partner.avatar_id,
-                gender: partner.gender
-            } : null
+            id: user.id,
+            onboarded: user.onboarded, // This fixes the redirect loop
+            mode: user.couple_id 
+                ? (user.couple_status === 'full' ? 'couple' : 'waiting') 
+                : 'solo',
+            // Add placeholder data for your future Dashboard.jsx here
+            partner: null, 
+            stats: {}
         });
-
     } catch (err) {
-        console.error("DASHBOARD ERROR:", err);
-        res.status(500).json({ error: "Failed to load dashboard. Please refresh." });
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
