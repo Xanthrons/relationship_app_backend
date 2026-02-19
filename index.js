@@ -1,44 +1,53 @@
 const express = require('express');
 const cors = require('cors');
-const http = require('http'); // 1. Import http
-const { Server } = require('socket.io'); // 2. Import socket.io
+const http = require('http'); 
+const { Server } = require('socket.io'); 
 require('dotenv').config();
 const { pool } = require('./config/db');
-
 const authRoutes = require('./routers/authRouter');
 
 const app = express();
-const server = http.createServer(app); // 3. Wrap app
+const server = http.createServer(app); 
+
+// --- 1. CONFIGURE CORS PROPERLY ---
+const allowedOrigins = [
+    "http://localhost:5173", 
+    "http://localhost:3000", 
+    process.env.FRONTEND_URL
+].filter(Boolean);
+
+// App-level CORS
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+}));
+
+// Socket.io CORS
 const io = new Server(server, {
     cors: {
-        // Add both common React ports just to be safe
-        origin: [
-            "http://localhost:5173", 
-            "http://localhost:3000", 
-            process.env.FRONTEND_URL
-        ].filter(Boolean),
+        origin: allowedOrigins,
         methods: ["GET", "POST"],
         credentials: true
-    }
+    },
+    // Add this to handle the "WebSocket closed" issues during handshakes
+    transports: ['polling', 'websocket'] 
 });
 
-// 4. Attach io to the app so we can use it in controllers
 app.set('socketio', io);
 
 const PORT = process.env.PORT || 5000;
 
-app.use(cors()); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Socket.io Connection Logic
+// --- 2. SOCKET LOGIC ---
 io.on('connection', (socket) => {
     console.log('User connected:', socket.id);
 
-    // When a creator opens the modal, they join a "room" named after their invite code
     socket.on('join_invite_room', (inviteCode) => {
+        if (!inviteCode || inviteCode === "undefined") return; // Validation
         socket.join(inviteCode);
-        console.log(`User joined room: ${inviteCode}`);
+        console.log(`User ${socket.id} joined room: ${inviteCode}`);
     });
 
     socket.on('disconnect', () => {
@@ -46,32 +55,23 @@ io.on('connection', (socket) => {
     });
 });
 
-// --- 3. DATABASE CONNECTION CHECK ---
+// --- 3. DB & ROUTES (Kept the same) ---
 pool.query('SELECT NOW()', (err, res) => {
-    if (err) {
-        console.error('❌ Neon Connection Error:', err.stack);
-    } else {
-        console.log('✅ Neon Database Connected at:', res.rows[0].now);
-    }
+    if (err) console.error('❌ Neon Connection Error:', err.stack);
+    else console.log('✅ Neon Database Connected');
 });
 
-// --- 4. ROUTES ---
-
-// Health Check
 app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'active', message: 'Server is purring like a kitten 🐱' });
+    res.status(200).json({ status: 'active' });
 });
 
-// Use Auth Routes
 app.use('/api/auth', authRoutes);
 
-// --- 5. GLOBAL ERROR HANDLER ---
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).json({ error: 'Something went wrong on our end!' });
+    res.status(500).json({ error: 'Internal Server Error' });
 });
 
-// --- 6. START SERVER ---
 server.listen(PORT, () => {
-    console.log(`🚀 Server + WebSockets running on http://localhost:${PORT}`);
+    console.log(`🚀 Server + WebSockets running on port ${PORT}`);
 });
