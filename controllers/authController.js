@@ -197,9 +197,9 @@ exports.pairCouple = async (req, res) => {
 
         // 4. LINK USER B TO USER A's WORLD
         await dbClient.query(
-            `UPDATE users SET couple_id = $1 WHERE id = $2`,
-            [newCoupleId, userId]
-        );
+    `UPDATE users SET couple_id = $1, nickname = $2, avatar_id = $3 WHERE id = $4`,
+    [newCoupleId, req.body.nickname, req.body.avatar_id, userId]
+);
 
         // 5. FINALIZE THE COUPLE RECORD
         await dbClient.query(
