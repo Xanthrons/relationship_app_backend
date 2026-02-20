@@ -630,29 +630,35 @@ exports.resetPassword = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
     const userId = req.user.id;
-    const { nickname, avatar_id } = req.body;
+    const { nickname, avatar_id, rel_status } = req.body; // Added rel_status
+    const dbClient = await pool.connect();
 
     try {
-        const result = await pool.query(
-            `UPDATE users 
-             SET nickname = COALESCE($1, nickname), 
-                 avatar_id = COALESCE($2, avatar_id) 
-             WHERE id = $3 
-             RETURNING id, nickname, avatar_id`,
+        await dbClient.query('BEGIN');
+
+        // 1. Update User Data
+        const userUpdate = await dbClient.query(
+            `UPDATE users SET 
+             nickname = COALESCE($1, nickname), 
+             avatar_id = COALESCE($2, avatar_id) 
+             WHERE id = $3 RETURNING couple_id`,
             [nickname, avatar_id, userId]
         );
 
-        if (result.rowCount === 0) {
-            return res.status(404).json({ error: "User profile not found." });
+        // 2. Update Couple Data (if rel_status is provided)
+        if (rel_status && userUpdate.rows[0].couple_id) {
+            await dbClient.query(
+                `UPDATE couples SET rel_status = $1 WHERE id = $2`,
+                [rel_status, userUpdate.rows[0].couple_id]
+            );
         }
 
-        res.json({ 
-            message: "Profile updated!", 
-            user: result.rows[0] 
-        });
+        await dbClient.query('COMMIT');
+        res.json({ message: "Profile updated!" });
     } catch (err) {
-        // Use the helper we built earlier to catch "Nickname too long" (22001)
-        const { status, error } = handleAuthError(err, "We couldn't save your changes.");
-        res.status(status).json({ error });
+        await dbClient.query('ROLLBACK');
+        res.status(500).json({ error: "Failed to update" });
+    } finally {
+        dbClient.release();
     }
 };
