@@ -157,67 +157,66 @@ exports.getInviteDetails = async (req, res) => {
 };
 
 exports.pairCouple = async (req, res) => {
-    if (!req.user || !req.user.id) {
-        return res.status(401).json({ error: "Authentication failed." });
-    }
-
     const userId = req.user.id; 
-    const { inviteCode, nickname, avatar_id } = req.body;
+    const { inviteCode } = req.body; // Joiners don't need to send nickname if they are already onboarded
     const dbClient = await pool.connect();
 
     try {
         await dbClient.query('BEGIN');
-        const cleanCode = inviteCode.trim().toUpperCase();
-        
-        const targetRes = await dbClient.query(
-            `SELECT c.*, u.gender as creator_gender 
-             FROM couples c 
-             JOIN users u ON c.creator_id = u.id 
-             WHERE TRIM(UPPER(c.invite_code)) = $1 AND c.status = 'waiting'`,
-            [cleanCode]
+
+        // 1. Find User B's (the Joiner) current couple status
+        const userB = await dbClient.query(
+            'SELECT couple_id, onboarded FROM users WHERE id = $1', 
+            [userId]
+        );
+        const oldCoupleId = userB.rows[0]?.couple_id;
+        const alreadyOnboarded = userB.rows[0]?.onboarded;
+
+        // 2. Find User A's (the Creator) world using the invite code
+        const targetCoupleRes = await dbClient.query(
+            `SELECT id, creator_id FROM couples 
+             WHERE TRIM(UPPER(invite_code)) = $1 AND status = 'waiting'`,
+            [inviteCode.trim().toUpperCase()]
         );
 
-        if (targetRes.rows.length === 0) {
+        if (targetCoupleRes.rows.length === 0) {
             await dbClient.query('ROLLBACK');
-            return res.status(400).json({ error: "Invalid or expired code." });
-        }
-        
-        const targetCouple = targetRes.rows[0];
-        if (targetCouple.creator_id === userId) {
-            await dbClient.query('ROLLBACK');
-            return res.status(400).json({ error: "You cannot join your own world." });
+            return res.status(400).json({ error: "Invalid or expired invite code." });
         }
 
-        // Auto-gender logic
-        const joinerGender = targetCouple.creator_gender === 'Boy' ? 'Girl' : 'Boy';
+        const newCoupleId = targetCoupleRes.rows[0].id;
 
-        // UPDATE JOINER: Set their mode to 'couple' but onboarded to FALSE
+        // 3. CLEANUP: Delete User B's old solo world so they can't invite others to it
+        if (oldCoupleId && oldCoupleId !== newCoupleId) {
+            // We only delete if it's a 'waiting' world where they were the creator
+            await dbClient.query(
+                "DELETE FROM couples WHERE id = $1 AND creator_id = $2 AND status = 'waiting'",
+                [oldCoupleId, userId]
+            );
+        }
+
+        // 4. LINK USER B TO USER A's WORLD
         await dbClient.query(
-            `UPDATE users SET 
-                nickname = COALESCE($1, nickname), 
-                avatar_id = COALESCE($2, avatar_id), 
-                gender = $3, 
-                couple_id = $4,
-                onboarded = false 
-             WHERE id = $5`,
-            [nickname || null, avatar_id || null, joinerGender, targetCouple.id, userId]
+            `UPDATE users SET couple_id = $1 WHERE id = $2`,
+            [newCoupleId, userId]
         );
 
-        // UPDATE COUPLE: Finalize status
+        // 5. FINALIZE THE COUPLE RECORD
         await dbClient.query(
             "UPDATE couples SET partner_id = $1, status = 'full' WHERE id = $2",
-            [userId, targetCouple.id]
+            [userId, newCoupleId]
         );
 
         await dbClient.query('COMMIT');
         
-        const io = req.app.get('socketio');
-        io.to(cleanCode).emit('partner_paired'); 
-        
-        res.json({ message: "Successfully paired!", coupleId: targetCouple.id });
+        res.json({ 
+            message: "Joined successfully!", 
+            onboarded: alreadyOnboarded 
+        });
     } catch (err) {
         await dbClient.query('ROLLBACK');
-        res.status(500).json({ error: "Connection failed." });
+        console.error(err);
+        res.status(500).json({ error: "Failed to join partner." });
     } finally {
         dbClient.release();
     }
