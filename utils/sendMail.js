@@ -1,36 +1,29 @@
 const nodemailer = require('nodemailer');
 
+const { Resend } = require('resend');
+
+// Initialize with your API key from Render Environment Variables
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 const sendEmail = async (to, subject, html) => {
-    try {
-        const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 465,
-            secure: true,
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
-            },
-            // --- ADD THIS LINE ---
-            family: 4, // Forces the connection to use IPv4
-            // ---------------------
-            connectionTimeout: 10000,
-            socketTimeout: 10000,
-        });
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'TwoFold <onboarding@resend.dev>', // While testing, you must use this 'from' address
+      to: [to],
+      subject: subject,
+      html: html,
+    });
 
-        const mailOptions = {
-            from: `"TwoFold App" <${process.env.EMAIL_USER}>`,
-            to,
-            subject,
-            html,
-        };
-
-        await transporter.sendMail(mailOptions);
-        console.log(`📧 Email sent to ${to}`);
-    } catch (error) {
-        console.error('❌ SMTP Error Detail:', error.message);
-        console.error('❌ SMTP Error Code:', error.code);
-        throw error; 
+    if (error) {
+      console.error('❌ Resend Error:', error);
+      throw new Error(error.message);
     }
+
+    console.log(`📧 Email sent successfully via Resend: ${data.id}`);
+  } catch (err) {
+    console.error('❌ Mailer Error:', err.message);
+    throw err;
+  }
 };
 
 module.exports = { sendEmail };
