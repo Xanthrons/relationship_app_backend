@@ -332,13 +332,15 @@ exports.unlinkCouple = async (req, res) => {
         const coupleId = userRes.rows[0]?.couple_id;
 
         if (!coupleId) {
-            await dbClient.query('ROLLBACK'); // Explicitly rollback even on 400s for safety
+            await dbClient.query('ROLLBACK');
             return res.status(400).json({ error: "Not in a relationship." });
         }
 
-        // 1. Reset both users to Solo Mode
+        // 1. Reset both users to Solo Mode 
+        // We REMOVED "gender = NULL" and "onboarded = false"
+        // This keeps your nickname, avatar, and "onboarded" status intact.
         await dbClient.query(
-            'UPDATE users SET couple_id = NULL, gender = NULL WHERE couple_id = $1', 
+            'UPDATE users SET couple_id = NULL WHERE couple_id = $1', 
             [coupleId]
         );
 
@@ -349,8 +351,7 @@ exports.unlinkCouple = async (req, res) => {
         res.json({ message: "Unlinked successfully. You are now in Solo Mode." });
     } catch (err) {
         await dbClient.query('ROLLBACK');
-        console.error("UNLINK ERROR:", err);
-        res.status(500).json({ error: "Failed to unlink. Please try again later." });
+        res.status(500).json({ error: "Failed to unlink." });
     } finally {
         dbClient.release();
     }
@@ -555,28 +556,46 @@ exports.forgotPassword = async (req, res) => {
     if (validationError) return res.status(400).json({ error: validationError.details[0].message });
 
     const { email } = req.body;
+
     try {
+        // 1. VALIDATION: Check if user exists
         const user = await userModel.findByEmail(email);
         
-        // If user doesn't exist, we still say "Reset code sent" 
-        // to prevent people from checking if an email is registered.
-        if (user) {
-            const code = Math.floor(100000 + Math.random() * 900000).toString();
-            const hashedCode = await hashing.hashPassword(code);
-            const expires = new Date(Date.now() + 10 * 60000); 
-            
-            await pool.query(
-                'UPDATE users SET reset_code = $1, reset_expires = $2 WHERE email = $3', 
-                [hashedCode, expires, email]
-            );
-            
-            const emailHtml = `<h1>${code}</h1><p>Your TwoFold reset code. It expires in 10 minutes.</p>`;
-            await sendEmail(email, "Reset Code", emailHtml);
+        if (!user) {
+            // We stop here if the email isn't in our system
+            return res.status(404).json({ error: "No account found with this email address." });
         }
 
-        res.json({ message: "If that email exists, a reset code has been sent!" });
+        // 2. GENERATE CODE
+        const code = Math.floor(100000 + Math.random() * 900000).toString();
+        const hashedCode = await hashing.hashPassword(code);
+        const expires = new Date(Date.now() + 10 * 60000); // 10 minutes
+        
+        // 3. UPDATE DATABASE
+        await pool.query(
+            'UPDATE users SET reset_code = $1, reset_expires = $2 WHERE email = $3', 
+            [hashedCode, expires, email]
+        );
+        
+        // 4. ATTEMPT EMAIL
+        const emailHtml = `
+            <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+                <h1 style="color: #f43f5e;">${code}</h1>
+                <p>Your TwoFold reset code. It expires in 10 minutes.</p>
+            </div>`;
+
+        try {
+            await sendEmail(email, "Reset Code", emailHtml);
+            return res.json({ message: "Reset code sent! Check your inbox." });
+        } catch (emailErr) {
+            // Log this specific error to your terminal so you can see the Gmail/SMTP error
+            console.error("Mailer Error:", emailErr);
+            return res.status(500).json({ error: "The email server is busy. Please try again in a few minutes." });
+        }
+
     } catch (err) { 
-        res.status(500).json({ error: "We're having trouble sending emails right now." }); 
+        console.error("Database/Server Error:", err);
+        return res.status(500).json({ error: "Something went wrong on our end." }); 
     }
 };
 
