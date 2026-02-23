@@ -1,29 +1,30 @@
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true
+});
+
 exports.uploadMedia = async (req, res) => {
     try {
         if (!req.file) return res.status(400).json({ error: "No file provided" });
 
-        // Determine if it's audio or image
         const isAudio = req.file.mimetype.startsWith('audio');
-        const resourceType = isAudio ? 'video' : 'image'; // Cloudinary treats audio as 'video'
-
+        const resourceType = isAudio ? 'video' : 'image';
         const fileBase64 = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
 
         const result = await cloudinary.uploader.upload(fileBase64, {
             folder: `twofold_${resourceType}s`,
             resource_type: resourceType,
-            // Only apply face-crop if it's an image
             ...(resourceType === 'image' && { 
                 transformation: [{ width: 500, height: 500, crop: "fill", gravity: "face" }] 
             })
         });
 
-        res.json({ 
-            message: "Upload successful!", 
-            url: result.secure_url,
-            type: resourceType 
-        });
+        res.json({ url: result.secure_url, type: resourceType });
     } catch (err) {
-        console.error("Upload Error:", err);
-        res.status(500).json({ error: "Failed to upload media" });
+        res.status(500).json({ error: "Upload failed" });
     }
 };
