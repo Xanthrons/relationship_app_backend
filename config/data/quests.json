@@ -1,0 +1,1796 @@
+{
+  "quests": [
+    {
+      "title": "Compliment Marathon",
+      "description": "Give your partner 5 genuine, unique compliments throughout the day.",
+      "points_reward": 10,
+      "category": "Romantic"
+    },
+    {
+      "title": "Digital Detox Hour",
+      "description": "Put both phones in a drawer and spend 60 minutes talking or playing a game.",
+      "points_reward": 50,
+      "category": "Quality Time"
+    },
+    {
+      "title": "The Culinary Experiment",
+      "description": "Cook a meal together using at least one ingredient neither of you has tried before.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "Memory Lane",
+      "description": "Look through your first 20 photos together and share what you were feeling in each.",
+      "points_reward": 50,
+      "category": "Deep Talk"
+    },
+    {
+      "title": "Quick Fix",
+      "description": "Identify one small thing in the house that's broken or messy and fix it together.",
+      "points_reward": 10,
+      "category": "Chore"
+    },
+    {
+      "title": "The IKEA Challenge",
+      "description": "Assemble a piece of furniture or organize a complex closet without a single argument.",
+      "points_reward": 100,
+      "category": "Hard"
+    },
+    {
+      "title": "Sunrise Serenity",
+      "description": "Wake up early together to watch the sunrise with a coffee or tea.",
+      "points_reward": 50,
+      "category": "Romantic"
+    },
+    {
+      "title": "Future Casting",
+      "description": "Write down three things you want to achieve as a couple in the next 5 years.",
+      "points_reward": 50,
+      "category": "Deep Talk"
+    },
+    {
+      "title": "Playlist of Us",
+      "description": "Create a 10-song playlist that defines your relationship history.",
+      "points_reward": 10,
+      "category": "Fun"
+    },
+    {
+      "title": "Love Note Hide-and-Seek",
+      "description": "Hide a physical love note somewhere your partner will find it later.",
+      "points_reward": 10,
+      "category": "Romantic"
+    },
+    {
+      "title": "Local Tourist",
+      "description": "Visit a landmark or museum in your city that you’ve both never been to.",
+      "points_reward": 100,
+      "category": "Adventure"
+    },
+    {
+      "title": "Morning Stretch",
+      "description": "Complete a 10-minute yoga or stretching routine together.",
+      "points_reward": 10,
+      "category": "Health"
+    },
+    {
+      "title": "The Chore Swap",
+      "description": "Switch your usual chores for the day (e.g., if you cook, they cook).",
+      "points_reward": 50,
+      "category": "Chore"
+    },
+    {
+      "title": "Eye Contact Challenge",
+      "description": "Sit in silence and maintain eye contact for 3 full minutes.",
+      "points_reward": 50,
+      "category": "Deep Talk"
+    },
+    {
+      "title": "Picnic Floor",
+      "description": "Have a full dinner on a blanket on the living room floor instead of the table.",
+      "points_reward": 10,
+      "category": "Fun"
+    },
+    {
+      "title": "Appreciation Station",
+      "description": "Write a list of 10 things you appreciate about how your partner handles stress.",
+      "points_reward": 50,
+      "category": "Deep Talk"
+    },
+    {
+      "title": "Book Club for Two",
+      "description": "Read the same chapter of a book and discuss it over drinks.",
+      "points_reward": 50,
+      "category": "Growth"
+    },
+    {
+      "title": "Grocery Grand Prix",
+      "description": "Get through the weekly grocery shopping in under 20 minutes as a team.",
+      "points_reward": 10,
+      "category": "Chore"
+    },
+    {
+      "title": "Volunteer Duo",
+      "description": "Spend 4 hours volunteering for a local charity or community event.",
+      "points_reward": 100,
+      "category": "Adventure"
+    },
+    {
+      "title": "No-Spend Weekend",
+      "description": "Go a full 48 hours without spending money on non-essentials.",
+      "points_reward": 100,
+      "category": "Hard"
+    },
+    {
+      "title": "Water Plants Together",
+      "description": "Tend to all the indoor or garden plants as a team activity.",
+      "points_reward": 10,
+      "category": "Chore"
+    },
+    {
+      "title": "Blind Taste Test",
+      "description": "Blindfold one partner and have them guess 5 different snacks.",
+      "points_reward": 10,
+      "category": "Fun"
+    },
+    {
+      "title": "Dream Home Blueprint",
+      "description": "Sketch or describe your 'dream house' layout in detail.",
+      "points_reward": 50,
+      "category": "Deep Talk"
+    },
+    {
+      "title": "Handwritten Mail",
+      "description": "Write and mail a physical letter to your partner’s parents or a relative.",
+      "points_reward": 50,
+      "category": "Growth"
+    },
+    {
+      "title": "The Ultimate Clean",
+      "description": "Deep clean the entire bathroom together until it sparkles.",
+      "points_reward": 100,
+      "category": "Chore"
+    },{
+      "title": "TikTok Dance Duo",
+      "description": "Learn and record a 15-second trending TikTok dance together (posting is optional!).",
+      "points_reward": 50,
+      "category": "Fun"
+    },
+    {
+      "title": "The Blue Door Hunt",
+      "description": "Go for a drive or walk and find a house with a blue door. Take a selfie in front of it.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "Voice Note Love Letter",
+      "description": "Send a 60-second voice note explaining one specific reason why you fell in love with them.",
+      "points_reward": 10,
+      "category": "Romantic"
+    },
+    {
+      "title": "The Grocery Secret",
+      "description": "Go to the store and buy one snack you loved as a child but haven't had in years to share.",
+      "points_reward": 10,
+      "category": "Deep Talk"
+    },
+    {
+      "title": "Mural Masterpiece",
+      "description": "Find a piece of street art or a mural in town and take a 'creative' photo of your partner in front of it.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "The 5-Minute Room Reset",
+      "description": "Set a timer for 5 minutes and race to clean the messiest room in the house together.",
+      "points_reward": 10,
+      "category": "Chore"
+    },
+    {
+      "title": "Podcast Exchange",
+      "description": "Listen to a 30+ minute podcast episode recommended by your partner and discuss it.",
+      "points_reward": 50,
+      "category": "Growth"
+    },
+    {
+      "title": "Flashlight Fort",
+      "description": "Build a blanket fort in the living room and watch a movie inside it.",
+      "points_reward": 50,
+      "category": "Fun"
+    },
+    {
+      "title": "The 'No Complain' 24 Hours",
+      "description": "Go a full 24 hours without uttering a single complaint about anything. Harder than it looks!",
+      "points_reward": 100,
+      "category": "Hard"
+    },
+    {
+      "title": "Mirror Message",
+      "description": "Use a dry-erase marker (or a post-it) to leave a sweet message on the bathroom mirror.",
+      "points_reward": 10,
+      "category": "Romantic"
+    },
+    {
+      "title": "Recipe Roulette",
+      "description": "Open a cookbook to a random page and cook the first recipe you see, no matter how weird.",
+      "points_reward": 50,
+      "category": "Fun"
+    },
+    {
+      "title": "Local Legend Search",
+      "description": "Find the oldest building in your town and take a photo of the plaque or foundation date.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "Window Shopping Dreams",
+      "description": "Go to a high-end store or car dealership and pick out exactly what you'd buy if you won the lottery.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "The 20-Pushup Challenge",
+      "description": "Complete 20 pushups (or a 1-minute plank) side-by-side.",
+      "points_reward": 10,
+      "category": "Health"
+    },
+    {
+      "title": "Snail Mail Surprise",
+      "description": "Buy a postcard, write a secret message, and mail it to your partner from the local post office.",
+      "points_reward": 50,
+      "category": "Romantic"
+    },
+    {
+      "title": "Car Karaoke Session",
+      "description": "Record a video of you two singing a duet at the top of your lungs while parked or driving.",
+      "points_reward": 10,
+      "category": "Fun"
+    },
+    {
+      "title": "The 'Yes' Menu",
+      "description": "Go to a restaurant and let your partner order your entire meal for you.",
+      "points_reward": 50,
+      "category": "Romantic"
+    },
+    {
+      "title": "Plant a Seed",
+      "description": "Buy a packet of seeds and a pot, and plant them together. Commit to keeping it alive!",
+      "points_reward": 50,
+      "category": "Growth"
+    },
+    {
+      "title": "Home Movie Night",
+      "description": "Watch at least 30 minutes of old family videos or videos from the early days of your relationship.",
+      "points_reward": 50,
+      "category": "Deep Talk"
+    },
+    {
+      "title": "The Ultimate Junk Drawer Fix",
+      "description": "Tackle that one 'junk drawer' in the kitchen and organize it perfectly.",
+      "points_reward": 50,
+      "category": "Chore"
+    },
+    {
+      "title": "Strangers' Kindness",
+      "description": "Pay for the coffee or meal of the person behind you in line as a couple.",
+      "points_reward": 100,
+      "category": "Adventure"
+    },
+    {
+      "title": "New Hobby Trial",
+      "description": "Watch a YouTube tutorial for a skill neither of you has (origami, coding, drawing) and try it for 30 mins.",
+      "points_reward": 50,
+      "category": "Growth"
+    },
+    {
+      "title": "Park Bench People Watching",
+      "description": "Sit on a public bench for 20 minutes and make up elaborate backstories for the people passing by.",
+      "points_reward": 10,
+      "category": "Fun"
+    },
+    {
+      "title": "The 10-Minute Car Detail",
+      "description": "Spend 10 minutes cleaning all the trash and dust out of the car interior together.",
+      "points_reward": 10,
+      "category": "Chore"
+    },
+    {
+      "title": "Handwritten Gratitude",
+      "description": "Write a list of 5 things your partner did this week that made your life easier.",
+      "points_reward": 50,
+      "category": "Deep Talk"
+    },{
+      "title": "The Vulnerability Vault",
+      "description": "Share one childhood fear you’ve never told your partner before.",
+      "points_reward": 50,
+      "category": "Emotional Trust"
+    },
+    {
+      "title": "Heartbeat Sync",
+      "description": "Lay together in silence for 10 minutes, focusing only on the sound of each other's breathing.",
+      "points_reward": 50,
+      "category": "Intimacy Builder"
+    },
+    {
+      "title": "The 'Love Shape' Hunt",
+      "description": "Go for a walk and find an object in nature that is naturally shaped like a heart. Send a photo.",
+      "points_reward": 50,
+      "category": "Playful Challenge"
+    },
+    {
+      "title": "Bucket List 2030",
+      "description": "Write down 5 major life goals you want to achieve together in the next 10 years.",
+      "points_reward": 100,
+      "category": "Long-term Bonding"
+    },
+    {
+      "title": "The 'New Territory' Coffee",
+      "description": "Drive to a neighborhood you've never visited and find a local coffee shop to sit in.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "Hobby Shadowing",
+      "description": "Spend 30 minutes watching or helping your partner with their solo hobby (e.g., gaming, crafting, coding).",
+      "points_reward": 50,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "The 7-Minute Hug",
+      "description": "Give your partner a continuous 7-minute hug (set a timer!) to release oxytocin.",
+      "points_reward": 10,
+      "category": "Intimacy Builder"
+    },
+    {
+      "title": "Secret Code Language",
+      "description": "Invent a secret code word or hand signal that means 'I love you' or 'Let's leave' for public use.",
+      "points_reward": 10,
+      "category": "Playful Challenge"
+    },
+    {
+      "title": "State of the Union",
+      "description": "Ask: 'What is one thing I did this week that made you feel safe?' Listen without interrupting.",
+      "points_reward": 50,
+      "category": "Emotional Trust"
+    },
+    {
+      "title": "Time Capsule Selfie",
+      "description": "Take a selfie together, write a caption for your 'future selves,' and save it in a hidden folder.",
+      "points_reward": 100,
+      "category": "Long-term Bonding"
+    },
+    {
+      "title": "Geo-Caching Date",
+      "description": "Download a geocaching app and find at least one hidden 'treasure' in your city.",
+      "points_reward": 100,
+      "category": "Adventure"
+    },
+    {
+      "title": "The Support Swap",
+      "description": "Ask: 'What is your biggest stressor this week?' and come up with one way you can help.",
+      "points_reward": 50,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "Sensory Dinner",
+      "description": "Feed each other three different snacks while one partner is blindfolded. Guess the flavors.",
+      "points_reward": 50,
+      "category": "Intimacy Builder"
+    },
+    {
+      "title": "Red Light Photo Op",
+      "description": "Next time you are at a red light (as a passenger!), take a silly 'model' photo of your partner.",
+      "points_reward": 10,
+      "category": "Playful Challenge"
+    },
+    {
+      "title": "The Apology Tour",
+      "description": "Apologize for one small recurring habit you know annoys them, and commit to fixing it for 48 hours.",
+      "points_reward": 50,
+      "category": "Emotional Trust"
+    },
+    {
+      "title": "The 'Us' Perennial",
+      "description": "Buy a plant that lives for years and find a permanent spot for it in your home or garden.",
+      "points_reward": 100,
+      "category": "Long-term Bonding"
+    },
+    {
+      "title": "Peak Performance",
+      "description": "Hike or walk to the highest physical point in your local area and take a victory photo.",
+      "points_reward": 100,
+      "category": "Adventure"
+    },
+    {
+      "title": "Meditation Duo",
+      "description": "Complete a 10-minute guided 'loving-kindness' meditation together.",
+      "points_reward": 50,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "Compliment Post-Its",
+      "description": "Leave 3 Post-It notes in 3 different rooms, each listing a physical trait you adore about them.",
+      "points_reward": 10,
+      "category": "Intimacy Builder"
+    },
+    {
+      "title": "Meme War",
+      "description": "Send 5 memes today that specifically remind you of an inside joke you share.",
+      "points_reward": 10,
+      "category": "Playful Challenge"
+    },
+    {
+      "title": "The 'Safe Space' Question",
+      "description": "Ask: 'What do I do that makes you feel most loved?' and write the answer in your notes.",
+      "points_reward": 50,
+      "category": "Emotional Trust"
+    },
+    {
+      "title": "Travel Vision Board",
+      "description": "Create a digital collage of the top 3 countries you want to visit together.",
+      "points_reward": 50,
+      "category": "Long-term Bonding"
+    },
+    {
+      "title": "Midnight Drive",
+      "description": "Go for a 15-minute drive at night with no destination, just listening to your favorite album.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "Financial Dream Talk",
+      "description": "Discuss one thing you’d love to buy together if you saved up for a whole year.",
+      "points_reward": 50,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "Digital Will",
+      "description": "Share your phone passcodes or emergency contact info with each other (if you haven't yet).",
+      "points_reward": 100,
+      "category": "Emotional Trust"
+    },{
+      "title": "The Park Lap Challenge",
+      "description": "Go to a local park and walk one full lap while holding hands the entire time.",
+      "points_reward": 10,
+      "category": "Health"
+    },
+    {
+      "title": "Thrift Store Style-Off",
+      "description": "Go to a thrift store with a $10 budget and pick out the 'coolest' outfit for each other.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "Double Date Diplomat",
+      "description": "Reach out and organize a dinner or activity with another couple you haven't seen in a while.",
+      "points_reward": 50,
+      "category": "Social"
+    },
+    {
+      "title": "Gamer’s Alliance",
+      "description": "Play a cooperative video game together for at least 45 minutes (no vs. mode!).",
+      "points_reward": 50,
+      "category": "Playful Challenge"
+    },
+    {
+      "title": "The Great Cupcake-Off",
+      "description": "Bake a batch of cupcakes and compete to see who can decorate theirs the most creatively.",
+      "points_reward": 50,
+      "category": "Cooking"
+    },
+    {
+      "title": "Sunrise Yoga",
+      "description": "Follow a 15-minute beginner yoga video together right after waking up.",
+      "points_reward": 50,
+      "category": "Health"
+    },
+    {
+      "title": "The Bridge Selfie",
+      "description": "Find a bridge (even a small one in a park) and take a panoramic photo together.",
+      "points_reward": 10,
+      "category": "Adventure"
+    },
+    {
+      "title": "Five-Minute Meditation",
+      "description": "Sit back-to-back and meditate in silence for 5 minutes.",
+      "points_reward": 10,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "Mystery Text Message",
+      "description": "Send your partner a text that is just three emojis. They have to guess the secret meaning.",
+      "points_reward": 10,
+      "category": "Playful Challenge"
+    },
+    {
+      "title": "Recipe Recreation",
+      "description": "Find a photo of a meal you ate on your first date (or early on) and try to cook it at home.",
+      "points_reward": 100,
+      "category": "Bonding"
+    },
+    {
+      "title": "The Grocery Charity Run",
+      "description": "Go to the store and pick out 5 items to donate to a local food bank together.",
+      "points_reward": 50,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "Bird Watching Bingo",
+      "description": "Go outside and stay until you have spotted three different species of birds.",
+      "points_reward": 10,
+      "category": "Adventure"
+    },
+    {
+      "title": "The 'No-Tech' Picnic",
+      "description": "Eat lunch outside with no phones allowed on your person.",
+      "points_reward": 50,
+      "category": "Quality Time"
+    },
+    {
+      "title": "Language Lab",
+      "description": "Learn how to say 'I love you' and 'You are beautiful' in a language neither of you speaks.",
+      "points_reward": 10,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "The Backyard Campout",
+      "description": "Set up a tent or a sleeping bag fort in the backyard (or balcony) and spend 2 hours stargazing.",
+      "points_reward": 100,
+      "category": "Adventure"
+    },
+    {
+      "title": "Puzzle Piece Partnership",
+      "description": "Start a jigsaw puzzle together and complete at least the entire border.",
+      "points_reward": 50,
+      "category": "Quality Time"
+    },
+    {
+      "title": "The Weekend Trip Map",
+      "description": "Pin 3 locations on a map within a 3-hour drive that you want to visit this year.",
+      "points_reward": 50,
+      "category": "Long-term Bonding"
+    },
+    {
+      "title": "Fitness Face-off",
+      "description": "See who can hold a plank the longest. The winner gets to pick the next movie!",
+      "points_reward": 10,
+      "category": "Health"
+    },
+    {
+      "title": "Letter to the Future",
+      "description": "Write a letter to yourselves to be opened in exactly one year. Seal it in an envelope.",
+      "points_reward": 100,
+      "category": "Emotional Trust"
+    },
+    {
+      "title": "Karaoke Kitchen",
+      "description": "Use a wooden spoon as a mic and perform one full song for your partner.",
+      "points_reward": 10,
+      "category": "Playful Challenge"
+    },
+    {
+      "title": "Secret Menu Hunt",
+      "description": "Go to a fast-food chain and try to order an item from a 'secret menu' you found online.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "The Healthy Prep",
+      "description": "Spend Sunday afternoon prepping healthy snacks (fruit, nuts, veggies) for the week together.",
+      "points_reward": 50,
+      "category": "Health"
+    },
+    {
+      "title": "Home Workout Hero",
+      "description": "Complete a 30-minute high-intensity interval training (HIIT) session together.",
+      "points_reward": 50,
+      "category": "Health"
+    },
+    {
+      "title": "Public Display of Affection",
+      "description": "Give your partner a long, dramatic kiss in a crowded public place.",
+      "points_reward": 10,
+      "category": "Romantic"
+    },
+    {
+      "title": "The Local Event Scout",
+      "description": "Find a local flyer or community board and attend the next free event listed on it.",
+      "points_reward": 100,
+      "category": "Adventure"
+    },{
+      "title": "The Great Furniture Shuffle",
+      "description": "Rearrange the layout of one room in the house to give it a fresh 'new home' vibe.",
+      "points_reward": 100,
+      "category": "Home Improvement"
+    },
+    {
+      "title": "Inner Child Interview",
+      "description": "Ask your partner: 'What was your favorite way to play when you were 8?' and really listen.",
+      "points_reward": 10,
+      "category": "Deep Talk"
+    },
+    {
+      "title": "Scent of a Sanctuary",
+      "description": "Go to a store together and pick out a signature candle or diffuser scent for your bedroom.",
+      "points_reward": 50,
+      "category": "Home Improvement"
+    },
+    {
+      "title": "The Forgiveness Letter",
+      "description": "Write down one thing you've been holding onto and physically tear up the paper to let it go.",
+      "points_reward": 100,
+      "category": "Emotional Trust"
+    },
+    {
+      "title": "Gallery Wall Design",
+      "description": "Select 5 photos of your favorite memories and find a place to display them together.",
+      "points_reward": 50,
+      "category": "Home Improvement"
+    },
+    {
+      "title": "Personality Test Night",
+      "description": "Both take the Enneagram or Myers-Briggs test and discuss how your types interact.",
+      "points_reward": 50,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "The Pantry Purge",
+      "description": "Go through the pantry together and throw away everything expired. Victory dance required.",
+      "points_reward": 50,
+      "category": "Chore"
+    },
+    {
+      "title": "Love Language Check-In",
+      "description": "Discuss if your primary love languages have shifted recently and how to better meet them.",
+      "points_reward": 50,
+      "category": "Deep Talk"
+    },
+    {
+      "title": "The 'Hidden' Park Picnic",
+      "description": "Find a park on Google Maps you've never visited and have a 20-minute coffee date there.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "Shared Vision Board",
+      "description": "Create a Pinterest board of 'Home Goals' and add at least 10 items you both love.",
+      "points_reward": 50,
+      "category": "Long-term Bonding"
+    },
+    {
+      "title": "Gratitude Jar Launch",
+      "description": "Find a jar and write three things you’re grateful for today to start a new habit.",
+      "points_reward": 10,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "The 10-Minute Tech Help",
+      "description": "Help your partner fix one annoying digital problem (organizing files, updating apps).",
+      "points_reward": 10,
+      "category": "Utility"
+    },
+    {
+      "title": "Sunset Chase",
+      "description": "Drive until you find the best possible view of the sunset and take a silhouette photo.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "Values Alignment",
+      "description": "List your top 3 life values (e.g., freedom, security, fun) and see where they overlap.",
+      "points_reward": 100,
+      "category": "Deep Talk"
+    },
+    {
+      "title": "Lightbulb Moment",
+      "description": "Walk through the house and replace every single burnt-out or flickering bulb together.",
+      "points_reward": 10,
+      "category": "Home Improvement"
+    },
+    {
+      "title": "Bake a Secret Ingredient",
+      "description": "Bake cookies but add one 'mystery' ingredient (like sea salt or chili). Partner must guess it.",
+      "points_reward": 10,
+      "category": "Fun"
+    },
+    {
+      "title": "Podcast Walk",
+      "description": "Go for a walk while sharing a pair of headphones, listening to the same story/episode.",
+      "points_reward": 50,
+      "category": "Quality Time"
+    },
+    {
+      "title": "The Guest Room Refresh",
+      "description": "Make the guest bed and declutter the space so it’s ready for a visitor at any time.",
+      "points_reward": 50,
+      "category": "Chore"
+    },
+    {
+      "title": "Compliment Mirror",
+      "description": "Write a compliment on the mirror using a dry-erase marker for the other person to find.",
+      "points_reward": 10,
+      "category": "Romantic"
+    },
+    {
+      "title": "Travel Documentary Date",
+      "description": "Watch a documentary about a country you want to visit and take notes on what to see.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "The 'Ask Me Anything'",
+      "description": "Set a timer for 10 minutes where one person can ask anything and the other must be honest.",
+      "points_reward": 100,
+      "category": "Emotional Trust"
+    },
+    {
+      "title": "Emergency Kit Audit",
+      "description": "Check your first aid kit or car emergency bag and restock anything missing.",
+      "points_reward": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Physical Touch Prayer",
+      "description": "Spend 5 minutes just holding hands and telling each other one thing you hope for the other.",
+      "points_reward": 50,
+      "category": "Intimacy Builder"
+    },
+    {
+      "title": "Local Bakery Hunt",
+      "description": "Find a bakery you’ve never been to and buy the most 'unusual' looking pastry they have.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "Bed Linen Deep Clean",
+      "description": "Strip the bed, wash everything, and put on fresh, crisp sheets together.",
+      "points_reward": 50,
+      "category": "Home Improvement"
+    },{
+      "title": "The 1-Star Review Laugh",
+      "description": "Find the funniest 1-star review for a place you both actually love. Send it to your partner.",
+      "points_reward": 10,
+      "category": "Digital Scavenger Hunt"
+    },
+    {
+      "title": "Zillow Dream Mansion",
+      "description": "Find the most expensive house currently for sale in your zip code and pick which room would be yours.",
+      "points_reward": 50,
+      "category": "Digital Scavenger Hunt"
+    },
+    {
+      "title": "The 10,000 Step Trek",
+      "description": "Go for a long walk or hike and don't stop until both of your fitness trackers hit 10k steps.",
+      "points_reward": 100,
+      "category": "Fitness"
+    },
+    {
+      "title": "Wikipedia Rabbit Hole",
+      "description": "Start on the page for 'Love' and see who can reach the page for 'Space Exploration' in the fewest clicks.",
+      "points_reward": 50,
+      "category": "Digital Scavenger Hunt"
+    },
+    {
+      "title": "Yearbook Roast Night",
+      "description": "Find your old high school photos (or social media archives) and laugh at your questionable fashion choices.",
+      "points_reward": 50,
+      "category": "Nostalgia"
+    },
+    {
+      "title": "The Teenage Anthem Hour",
+      "description": "Listen to a playlist of songs that were popular when you were 15 and share your 'coolest' memory.",
+      "points_reward": 10,
+      "category": "Nostalgia"
+    },
+    {
+      "title": "Google Earth Time Travel",
+      "description": "Use Google Earth to show your partner the exact house you grew up in and describe your old bedroom.",
+      "points_reward": 50,
+      "category": "Nostalgia"
+    },
+    {
+      "title": "Pickleball Partner Trial",
+      "description": "Go to a local court and play a racket sport (tennis, pickleball, badminton) for 45 minutes.",
+      "points_reward": 50,
+      "category": "Fitness"
+    },
+    {
+      "title": "The $20 Blind Date",
+      "description": "Go to a store with exactly $20 and buy everything needed for a 'complete' date night experience.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "First-Ever Text Search",
+      "description": "Scroll all the way back to the very first text message you ever sent each other and read it aloud.",
+      "points_reward": 10,
+      "category": "Digital Scavenger Hunt"
+    },
+    {
+      "title": "The Neighborhood Dog Bingo",
+      "description": "Go for a walk and stay out until you have spotted five different breeds of dogs.",
+      "points_reward": 10,
+      "category": "Outdoor"
+    },
+    {
+      "title": "Bike to Breakfast",
+      "description": "Ride bicycles to a local cafe or bakery instead of driving.",
+      "points_reward": 100,
+      "category": "Fitness"
+    },
+    {
+      "title": "Childhood Toy Story",
+      "description": "Describe the one toy you loved most as a child and why it was so special to you.",
+      "points_reward": 10,
+      "category": "Nostalgia"
+    },
+    {
+      "title": "The Local Library Discovery",
+      "description": "Visit your local library and each check out one book that the other person chooses for you.",
+      "points_reward": 50,
+      "category": "Adventure"
+    },
+    {
+      "title": "Sunset Jog Duo",
+      "description": "Go for a light 20-minute jog together while the sun is setting.",
+      "points_reward": 50,
+      "category": "Fitness"
+    },
+    {
+      "title": "Street View Time Machine",
+      "description": "Find a location on Google Street View that has changed drastically over the years and discuss it.",
+      "points_reward": 50,
+      "category": "Digital Scavenger Hunt"
+    },
+    {
+      "title": "The No-Mirror Outfit",
+      "description": "Pick out a full outfit for your partner without letting them see a mirror until they are fully dressed.",
+      "points_reward": 50,
+      "category": "Playful Challenge"
+    },
+    {
+      "title": "Random Recipe Reel",
+      "description": "Find a 'viral' cooking video on social media and attempt to make it together tonight.",
+      "points_reward": 10,
+      "category": "Digital Scavenger Hunt"
+    },
+    {
+      "title": "Letter to Your 10-Year-Old Self",
+      "description": "Each write a short paragraph to your younger selves and read them to each other.",
+      "points_reward": 50,
+      "category": "Growth"
+    },
+    {
+      "title": "The Trio Selfie Hunt",
+      "description": "Find a fountain, a statue, and a pink wall in your city. Take a selfie at all three.",
+      "points_reward": 100,
+      "category": "Adventure"
+    },
+    {
+      "title": "Old Movie Marathon",
+      "description": "Watch a movie that was released the year you were born.",
+      "points_reward": 50,
+      "category": "Nostalgia"
+    },
+    {
+      "title": "Morning Affirmation Voice Note",
+      "description": "Send a voice note while you’re apart listing three things your partner is doing 'right' lately.",
+      "points_reward": 10,
+      "category": "Romantic"
+    },
+    {
+      "title": "The Park Bench People-Watch",
+      "description": "Sit in a busy public area for 15 minutes and try to guess the life stories of people passing by.",
+      "points_reward": 10,
+      "category": "Adventure"
+    },
+    {
+      "title": "Digital Photo Clean-Up",
+      "description": "Sit together and delete 100 blurry or duplicate photos from your shared digital library.",
+      "points_reward": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "First Impression Share",
+      "description": "Tell the story of what you actually thought of the other person the very first time you met.",
+      "points_reward": 10,
+      "category": "Nostalgia"
+    }
+  ],
+  "coupons": [
+    {
+      "title": "10-Minute Foot Rub",
+      "description": "Redeem for a relaxing foot massage after a long day.",
+      "point_cost": 50,
+      "category": "Physical"
+    },
+    {
+      "title": "Movie Choice Veto",
+      "description": "You get the final say on what we watch tonight, no questions asked.",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Breakfast in Bed",
+      "description": "Your partner prepares and serves your favorite breakfast while you stay in bed.",
+      "point_cost": 200,
+      "category": "Luxury"
+    },
+    {
+      "title": "Get Out of Laundry Free",
+      "description": "Your partner handles your share of the laundry for one full cycle.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Chef for a Night",
+      "description": "A 3-course meal cooked specifically to your cravings.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "The 'Snooze' Pass",
+      "description": "Your partner handles all morning responsibilities (pets, kids, coffee) so you can sleep in.",
+      "point_cost": 200,
+      "category": "Time"
+    },
+    {
+      "title": "Professional Style Massage",
+      "description": "A 45-minute full body massage with oils and music.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "Playlist Takeover",
+      "description": "You control the music in the car for the entire duration of the trip.",
+      "point_cost": 50,
+      "category": "Fun"
+    },
+    {
+      "title": "Dishwashing Immunity",
+      "description": "You are exempt from doing the dishes for the next three meals.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Dessert on Demand",
+      "description": "Your partner must go out or bake to provide you with a sweet treat right now.",
+      "point_cost": 200,
+      "category": "Food"
+    },
+    {
+      "title": "Winning the Argument",
+      "description": "Instantly end a minor disagreement by 'winning'—no more talking about it!",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Weekend of Zero Chores",
+      "description": "You don't have to lift a finger for housework from Saturday morning to Sunday night.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "Phone-Free Date Night",
+      "description": "Your partner must keep their phone off for the entire duration of the date.",
+      "point_cost": 50,
+      "category": "Quality Time"
+    },
+    {
+      "title": "Car Detail Service",
+      "description": "Your partner will wash and vacuum the interior of your car.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Pick the Takeout",
+      "description": "You choose the restaurant for dinner with no 'I don't know' or 'not that' allowed.",
+      "point_cost": 50,
+      "category": "Food"
+    },
+    {
+      "title": "A 'Yes' Day",
+      "description": "Your partner must say 'Yes' to any reasonable request for the next 12 hours.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "1-Hour Deep Vent",
+      "description": "Redeem for 60 minutes of uninterrupted listening while you vent about anything.",
+      "point_cost": 50,
+      "category": "Quality Time"
+    },
+    {
+      "title": "Starbucks (or Coffee) Run",
+      "description": "Your partner goes out to get your favorite beverage and brings it back.",
+      "point_cost": 200,
+      "category": "Food"
+    },
+    {
+      "title": "Custom Poetic Tribute",
+      "description": "Your partner must write a poem or a song (regardless of skill) about why you're great.",
+      "point_cost": 200,
+      "category": "Romantic"
+    },
+    {
+      "title": "The Grocery Hero",
+      "description": "Your partner does the entire weekly grocery shop alone.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Spa Night at Home",
+      "description": "Facemasks, cucumber eyes, foot soaks, and total relaxation provided by your partner.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "Tech Support Session",
+      "description": "Your partner helps you organize your digital files, photos, or fixes a tech annoyance.",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Middle Seat Immunity",
+      "description": "If traveling, you never have to take the 'lesser' seat/side/spot.",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Afternoon Nap Pass",
+      "description": "The partner takes care of all noise and distractions so you can nap for 2 hours.",
+      "point_cost": 200,
+      "category": "Time"
+    },
+    {
+      "title": "Dream Date Night",
+      "description": "Your partner plans, funds, and executes a surprise date based on your favorite things.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },{
+      "title": "The 'I'm Right' Token",
+      "description": "Redeem to instantly end any minor disagreement by being declared the winner.",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "15-Minute Scalp Massage",
+      "description": "Sit back while your partner gives you a relaxing, spa-like scalp massage.",
+      "point_cost": 50,
+      "category": "Physical"
+    },
+    {
+      "title": "Coffee Delivered to Bed",
+      "description": "Your partner brings you your morning caffeine exactly how you like it before you get up.",
+      "point_cost": 200,
+      "category": "Luxury"
+    },
+    {
+      "title": "The 'My Way' Car Route",
+      "description": "You choose the GPS route or the music, and your partner cannot complain about traffic or your choice.",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Cancel All Plans Card",
+      "description": "Redeem this to stay in and do nothing, even if you had previous social engagements.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "Personal Hype Person",
+      "description": "For the next 30 minutes, your partner must praise everything you do and cheer you on.",
+      "point_cost": 50,
+      "category": "Romantic"
+    },
+    {
+      "title": "Homemade Pizza Night",
+      "description": "Your partner makes a pizza from scratch (or dough) with all your favorite toppings.",
+      "point_cost": 200,
+      "category": "Food"
+    },
+    {
+      "title": "One Hour of Silence",
+      "description": "Redeem for 60 minutes of total peace to read, game, or nap without being interrupted.",
+      "point_cost": 200,
+      "category": "Time"
+    },
+    {
+      "title": "Pick the Next Date Theme",
+      "description": "You decide the entire vibe (e.g., 'Fancy,' 'Lazy,' 'Retro') for the next date night.",
+      "point_cost": 50,
+      "category": "Fun"
+    },
+    {
+      "title": "The 'Don't Cook' Pass",
+      "description": "It's your partner's turn to handle dinner, whether they cook or order takeout.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "30-Minute Cuddle Session",
+      "description": "Drop everything for 30 minutes of uninterrupted cuddling/spooning.",
+      "point_cost": 50,
+      "category": "Physical"
+    },
+    {
+      "title": "Weekend Breakfast Out",
+      "description": "Your partner treats you to breakfast or brunch at your favorite local spot.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "You Pick the Grocery Snacks",
+      "description": "On the next grocery run, you get to pick 3 'guilty pleasure' snacks with zero judgment.",
+      "point_cost": 50,
+      "category": "Food"
+    },
+    {
+      "title": "Car Wash & Vacuum",
+      "description": "Your partner takes your car to be cleaned or does it manually themselves.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "The 'No Laundry' Weekend",
+      "description": "You are officially banned from the laundry room; your partner handles it all.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "Late Night Treat Run",
+      "description": "Your partner must head out (or order) to get you a specific snack after 9 PM.",
+      "point_cost": 200,
+      "category": "Food"
+    },
+    {
+      "title": "The 'I Choose the Outfit' Card",
+      "description": "You get to pick what your partner wears for your next outing together.",
+      "point_cost": 50,
+      "category": "Fun"
+    },
+    {
+      "title": "Candlelight Bath for Two",
+      "description": "Your partner sets up a romantic bath with candles, music, and bubbles.",
+      "point_cost": 200,
+      "category": "Romantic"
+    },
+    {
+      "title": "Mystery Gift under $10",
+      "description": "Your partner must find and buy you a small, thoughtful surprise within 24 hours.",
+      "point_cost": 200,
+      "category": "Food"
+    },
+    {
+      "title": "Solo Shopping Trip",
+      "description": "Partner stays home to handle chores/kids/pets while you go shop alone for 3 hours.",
+      "point_cost": 500,
+      "category": "Time"
+    },
+    {
+      "title": "Walk the Dog Pass",
+      "description": "Your partner handles all pet bathroom breaks/walks for the entire day.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Hand-Held Walk",
+      "description": "Redeem for a 20-minute walk where your partner must hold your hand the whole time.",
+      "point_cost": 50,
+      "category": "Physical"
+    },
+    {
+      "title": "Social Media Shoutout",
+      "description": "Your partner posts a photo of you with a sweet caption on their preferred platform.",
+      "point_cost": 50,
+      "category": "Romantic"
+    },
+    {
+      "title": "Choose the Next Furniture/Decor",
+      "description": "You get the final tie-breaking vote on the next item bought for the house.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "The 'Ultimate Comfort' Night",
+      "description": "Pajamas, blankets, your favorite snacks, and your favorite movie—all set up by your partner.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },{
+      "title": "The Luxury Weekend Planner",
+      "description": "The partner must plan, book, and organize a full 48-hour getaway. You just show up.",
+      "point_cost": 500,
+      "category": "Premium"
+    },
+    {
+      "title": "The 'No Questions Asked' Veto",
+      "description": "Instantly cancel any plan or activity you aren't feeling, with zero explanation required.",
+      "point_cost": 200,
+      "category": "Elite"
+    },
+    {
+      "title": "Professional Photo Session",
+      "description": "Partner pays for and organizes a professional photoshoot for you both (or just you!).",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Emotional Safe Space Pass",
+      "description": "Redeem for 2 hours of venting where your partner can only offer validation, no 'fixing.'",
+      "point_cost": 50,
+      "category": "Emotional Trust"
+    },
+    {
+      "title": "The 'Getaway Driver'",
+      "description": "Your partner must drive you everywhere you need to go for one full week.",
+      "point_cost": 500,
+      "category": "Premium"
+    },
+    {
+      "title": "Designer Outfit Choice",
+      "description": "Your partner picks and purchases one high-quality item of clothing for you.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Michelin-Tier Date Night",
+      "description": "Redeem for a dinner at the fanciest restaurant in town, partner's treat.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Personal Hype Video",
+      "description": "Your partner must edit a 60-second video of your best moments together with music.",
+      "point_cost": 200,
+      "category": "Romantic"
+    },
+    {
+      "title": "1-on-1 Hobby Lesson",
+      "description": "Your partner pays for a class (cooking, art, dance) that you've wanted to try.",
+      "point_cost": 500,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "The All-Day Adulting Shield",
+      "description": "Your partner handles every single chore, bill, and 'adult' task for 24 hours.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Staycation at a Local Hotel",
+      "description": "Your partner books a local hotel room for one night just for a change of scenery.",
+      "point_cost": 500,
+      "category": "Premium"
+    },
+    {
+      "title": "Yes to One Adventure",
+      "description": "Pick any activity (skydiving, camping, a concert) and your partner must say 'Yes.'",
+      "point_cost": 500,
+      "category": "Adventure"
+    },
+    {
+      "title": "The Closet Purge Helper",
+      "description": "Your partner helps you declutter your wardrobe for 3 hours with zero complaining.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Personalized Jewelry Gift",
+      "description": "Redeem for a small, engraved, or meaningful piece of jewelry chosen by your partner.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "No-Complaint Sunday",
+      "description": "Your partner agrees to have a completely positive attitude for the whole day.",
+      "point_cost": 50,
+      "category": "Emotional Trust"
+    },
+    {
+      "title": "Deep Clean Service",
+      "description": "Your partner either deep cleans the whole house or hires a professional service.",
+      "point_cost": 500,
+      "category": "Premium"
+    },
+    {
+      "title": "The 'Ultimate Breakfast' Feast",
+      "description": "Waffles, eggs, fruit, bacon, mimosas—the works, prepared by your partner.",
+      "point_cost": 200,
+      "category": "Food"
+    },
+    {
+      "title": "Sleep-In Until Noon",
+      "description": "Your partner guards the door and keeps the house silent until you wake up naturally.",
+      "point_cost": 200,
+      "category": "Time"
+    },
+    {
+      "title": "Subscription Pay-Off",
+      "description": "Partner pays for 12 months of your favorite app or streaming service.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Custom Artwork Commission",
+      "description": "Partner commissions a local artist to draw/paint a photo of you or your pet.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "The Tech-Free Vacation Day",
+      "description": "Partner agrees to a 24-hour total phone/computer ban while you spend the day together.",
+      "point_cost": 200,
+      "category": "Premium"
+    },
+    {
+      "title": "The 'Lifetime' Request",
+      "description": "One massive favor (e.g., painting a room, attending a boring work event) used only once.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Private Concert",
+      "description": "Partner must perform a song for you or find a street performer to play specifically for you.",
+      "point_cost": 200,
+      "category": "Premium"
+    },
+    {
+      "title": "Master of the Remote",
+      "description": "You get total control over the TV and all streaming apps for an entire weekend.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "The Surprise Bouquet",
+      "description": "Your partner must bring you fresh flowers for no reason within the next 48 hours.",
+      "point_cost": 50,
+      "category": "Romantic"
+    },{
+      "title": "Skip the Gym Pass",
+      "description": "Redeem this to get out of a planned workout with zero guilt or nagging.",
+      "point_cost": 50,
+      "category": "Health"
+    },
+    {
+      "title": "The 'Last Bite' Rights",
+      "description": "You get the final, most delicious bite of whatever your partner is eating.",
+      "point_cost": 50,
+      "category": "Food"
+    },
+    {
+      "title": "Personal Stylist for a Day",
+      "description": "Your partner must help you pick out outfits and give honest (but kind) fashion advice.",
+      "point_cost": 200,
+      "category": "Fun"
+    },
+    {
+      "title": "Gaming Win Concession",
+      "description": "Your partner must let you win the next competitive game you play together.",
+      "point_cost": 50,
+      "category": "Playful Challenge"
+    },
+    {
+      "title": "The Morning Paper/Email Delivery",
+      "description": "Partner brings you your laptop, the mail, or a physical paper while you stay in bed.",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Dessert for Dinner",
+      "description": "Redeem this to skip a healthy meal and eat only sweets for dinner tonight.",
+      "point_cost": 200,
+      "category": "Luxury"
+    },
+    {
+      "title": "Professional Massage Session",
+      "description": "Your partner pays for a 60-minute massage at a local spa for you.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "30 Minutes of Extra Sleep",
+      "description": "Your partner takes over all loud morning tasks so you can sleep a bit longer.",
+      "point_cost": 50,
+      "category": "Time"
+    },
+    {
+      "title": "Chore-Free Saturday",
+      "description": "You are legally exempt from every single household task for the entire day.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Laundry Folding Service",
+      "description": "Your partner must fold and put away two full baskets of your laundry.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Personal Chauffeur",
+      "description": "Your partner drives you to three different errands of your choice.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Bedtime Story",
+      "description": "Your partner must read a chapter of a book or make up a story for you as you fall asleep.",
+      "point_cost": 50,
+      "category": "Romantic"
+    },
+    {
+      "title": "Snack Stash Refill",
+      "description": "Your partner must go to the store and replenish your secret snack stash.",
+      "point_cost": 200,
+      "category": "Food"
+    },
+    {
+      "title": "Social Media Hype Comment",
+      "description": "Partner must leave a glowing, slightly embarrassing compliment on your latest post.",
+      "point_cost": 10,
+      "category": "Fun"
+    },
+    {
+      "title": "Lunch Delivery Service",
+      "description": "Your partner brings you lunch at your place of work or wherever you are.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Custom Coffee Order",
+      "description": "Your partner must make you a 'fancy' coffee at home with foam, art, or syrup.",
+      "point_cost": 50,
+      "category": "Food"
+    },
+    {
+      "title": "Bath Bomb Evening",
+      "description": "Your partner sets up a bath with a bath bomb, music, and a drink for you.",
+      "point_cost": 200,
+      "category": "Luxury"
+    },
+    {
+      "title": "Closet Organization Helper",
+      "description": "Your partner spends 1 hour helping you color-coordinate or declutter your closet.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Movie Theater Treat",
+      "description": "Redeem for a trip to the cinema, including the largest popcorn on the menu.",
+      "point_cost": 200,
+      "category": "Fun"
+    },
+    {
+      "title": "The 'Ultimate Yes' Response",
+      "description": "One time use: Partner must say 'Yes' to any reasonable weekend plan you suggest.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Weekend Sleep-In (Until 11 AM)",
+      "description": "No alarms, no pets, no kids, no noise. Total silence until you wake up.",
+      "point_cost": 500,
+      "category": "Premium"
+    },
+    {
+      "title": "One Extra Dessert",
+      "description": "Even if we said 'no more sweets,' this coupon grants you one bonus treat tonight.",
+      "point_cost": 50,
+      "category": "Food"
+    },
+    {
+      "title": "Houseplant Caretaking",
+      "description": "Your partner takes over all watering and plant-misting duties for the week.",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Dream Trip Pitch",
+      "description": "Partner must sit and listen to your full travel pitch with zero 'that's too expensive' comments.",
+      "point_cost": 50,
+      "category": "Personal Growth"
+    },
+    {
+      "title": "Pick the Next Book",
+      "description": "You choose the next book we read together or the next audiobook for the car.",
+      "point_cost": 50,
+      "category": "Personal Growth"
+    },{
+      "title": "Remote Control Sovereign",
+      "description": "You have absolute control over the TV remote for the next 24 hours. No complaining allowed.",
+      "point_cost": 50,
+      "category": "Petty"
+    },
+    {
+      "title": "The Thermostat Dictator",
+      "description": "Redeem to set the house temperature exactly where you want it for one evening.",
+      "point_cost": 50,
+      "category": "Petty"
+    },
+    {
+      "title": "First Shower Rights",
+      "description": "You get the first shower and all the hot water for the next three days.",
+      "point_cost": 50,
+      "category": "Petty"
+    },
+    {
+      "title": "Professional Closet Design",
+      "description": "Partner spends the afternoon installing shelving or organizers to make your closet perfect.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "The 'I Told You So' Pass",
+      "description": "When you're right, you can use this to gloat for 5 minutes without any pushback.",
+      "point_cost": 50,
+      "category": "Petty"
+    },
+    {
+      "title": "Car Gas Tank Bounty",
+      "description": "Partner must take your car and return it with a completely full tank of gas.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Bedroom Mood Lighting",
+      "description": "Partner must set up fairy lights, candles, or smart bulbs to create a romantic vibe.",
+      "point_cost": 200,
+      "category": "Romantic"
+    },
+    {
+      "title": "The Weekend Cabin Retreat",
+      "description": "Partner books a small cabin or Airbnb in nature for a quiet 2-night getaway.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "The 'Pick My Outfit' Veto",
+      "description": "You get to reject any outfit choice your partner makes for a night out and pick a new one.",
+      "point_cost": 50,
+      "category": "Fun"
+    },
+    {
+      "title": "No-Explanation Social Out",
+      "description": "Use this to leave any party or social gathering the second you feel like it.",
+      "point_cost": 200,
+      "category": "Utility"
+    },
+    {
+      "title": "Full House Scent Overhaul",
+      "description": "Partner buys new candles, soaps, and sprays to make the whole house smell like a spa.",
+      "point_cost": 200,
+      "category": "Home Improvement"
+    },
+    {
+      "title": "The Gift of Silence",
+      "description": "Your partner must refrain from talking about 'heavy' topics or chores for 4 hours.",
+      "point_cost": 200,
+      "category": "Time"
+    },
+    {
+      "title": "Surprise Amazon Item",
+      "description": "Partner must buy you one thing under $30 that has been sitting in your cart/wishlist.",
+      "point_cost": 200,
+      "category": "Luxury"
+    },
+    {
+      "title": "The 'Front Seat' Forever",
+      "description": "For the next week, you always get the front seat, even if friends are coming along.",
+      "point_cost": 50,
+      "category": "Petty"
+    },
+    {
+      "title": "Gourmet Picnic Basket",
+      "description": "Partner must pack a basket with wine, cheese, and high-end snacks for a park trip.",
+      "point_cost": 200,
+      "category": "Food"
+    },
+    {
+      "title": "The Ultimate Foot Soak",
+      "description": "Warm water, Epsom salts, and a 20-minute scrub provided by your partner.",
+      "point_cost": 50,
+      "category": "Physical"
+    },
+    {
+      "title": "Window Washing Service",
+      "description": "Partner cleans every window in the house (inside and out) until they are streak-free.",
+      "point_cost": 500,
+      "category": "Utility"
+    },
+    {
+      "title": "The 'Stay-in-Your-PJs' Day",
+      "description": "Your partner handles all errands and public tasks so you can stay in your pajamas all day.",
+      "point_cost": 200,
+      "category": "Time"
+    },
+    {
+      "title": "A Handwritten Poem",
+      "description": "Your partner must write at least 8 lines of (sincere or funny) poetry about you.",
+      "point_cost": 50,
+      "category": "Romantic"
+    },
+    {
+      "title": "The 'Aux Cord' Monopoly",
+      "description": "You choose all the music for the next three car rides, no matter how long they are.",
+      "point_cost": 50,
+      "category": "Fun"
+    },
+    {
+      "title": "Personal Gardener for a Day",
+      "description": "Partner pulls all weeds, prunes plants, and mows the lawn while you relax.",
+      "point_cost": 200,
+      "category": "Home Improvement"
+    },
+    {
+      "title": "Ice Cream Sundae Bar",
+      "description": "Partner sets up a station with 3 flavors and at least 5 different toppings.",
+      "point_cost": 200,
+      "category": "Food"
+    },
+    {
+      "title": "The 'Clean Slate' Pass",
+      "description": "Instantly end an argument about a past mistake—it can never be brought up again.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "One Week of No Dishes",
+      "description": "Partner is solely responsible for every dish, glass, and pan used for 7 days straight.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Morning Affirmation Text",
+      "description": "Partner must send you a sweet, encouraging text every morning for one week.",
+      "point_cost": 50,
+      "category": "Romantic"
+    },{
+      "title": "The 'Emergency' Exit Card",
+      "description": "Redeem this at any social event/party to leave immediately, no questions asked.",
+      "point_cost": 200,
+      "category": "Social Escape"
+    },
+    {
+      "title": "Boring Dinner Pass",
+      "description": "Use this to get out of one social dinner or event that you really don't want to attend.",
+      "point_cost": 200,
+      "category": "Social Escape"
+    },
+    {
+      "title": "Social Media Post Takeover",
+      "description": "You get to choose the photo and caption for your partner’s next social media post.",
+      "point_cost": 50,
+      "category": "Fun"
+    },
+    {
+      "title": "The 'I'm Exhausted' Shield",
+      "description": "Redeem for 24 hours of total freedom from all chores, cooking, and social obligations.",
+      "point_cost": 500,
+      "category": "Utility"
+    },
+    {
+      "title": "Nostalgic Dinner Prep",
+      "description": "Partner must cook a meal that reminds you specifically of your childhood home.",
+      "point_cost": 200,
+      "category": "Nostalgia"
+    },
+    {
+      "title": "The 'Talk Me Out of It' Pass",
+      "description": "Redeem when you're about to make an impulsive purchase; your partner must provide logic.",
+      "point_cost": 50,
+      "category": "Growth"
+    },
+    {
+      "title": "Guilty Pleasure Playlist Rights",
+      "description": "You get to play your 'embarrassing' music in the car for 1 full hour with zero mocking.",
+      "point_cost": 50,
+      "category": "Fun"
+    },
+    {
+      "title": "The Phone-Free Evening",
+      "description": "Both of you put phones in a lockbox from 6 PM until the next morning.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Mystery Delivery Credit",
+      "description": "Partner must order you a surprise meal via DoorDash/UberEats without telling you what it is.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "The Bedtime Backrub",
+      "description": "Redeem for a 15-minute focused back massage before you go to sleep.",
+      "point_cost": 50,
+      "category": "Physical"
+    },
+    {
+      "title": "Social Battery Recharge",
+      "description": "Redeem to spend the entire night in separate rooms doing your own hobbies in peace.",
+      "point_cost": 200,
+      "category": "Time"
+    },
+    {
+      "title": "The 'Uber Song' Choice",
+      "description": "You get to pick the music in the taxi/rideshare regardless of what anyone else wants.",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "One Night of Infinite Cuddles",
+      "description": "Partner must agree to be the 'big spoon' (or your preferred position) all night long.",
+      "point_cost": 200,
+      "category": "Physical"
+    },
+    {
+      "title": "The Fashion Consultation",
+      "description": "Partner must help you try on outfits and give detailed, helpful feedback for an upcoming event.",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Personal Tech Support",
+      "description": "Partner must spend 30 minutes organizing your phone storage or fixing a laptop issue.",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Weekday Sleep-In",
+      "description": "Partner handles the early morning routine (pets/coffee/etc.) on a work day so you can rest.",
+      "point_cost": 500,
+      "category": "Elite"
+    },
+    {
+      "title": "Weekend Trip Veto",
+      "description": "If you don't like the proposed destination for a trip, use this to force a change.",
+      "point_cost": 500,
+      "category": "Luxury"
+    },
+    {
+      "title": "High-End Dessert Delivery",
+      "description": "Partner must source and deliver a gourmet dessert from a bakery (not a grocery store).",
+      "point_cost": 200,
+      "category": "Luxury"
+    },
+    {
+      "title": "The Argument Truce",
+      "description": "Instantly freeze any minor argument for 24 hours to let tempers cool down.",
+      "point_cost": 50,
+      "category": "Emotional"
+    },
+    {
+      "title": "Grocery Bag Heavy Lifter",
+      "description": "Partner must carry all groceries from the car to the kitchen in one trip (if possible!).",
+      "point_cost": 50,
+      "category": "Utility"
+    },
+    {
+      "title": "Private Karaoke Session",
+      "description": "Partner must sing three songs of your choice for you in the living room.",
+      "point_cost": 200,
+      "category": "Fun"
+    },
+    {
+      "title": "The 'You're Right' Trophy",
+      "description": "Partner must verbally admit 'You were right about [Topic]' and never bring it up again.",
+      "point_cost": 50,
+      "category": "Petty"
+    },
+    {
+      "title": "DIY Spa Manager",
+      "description": "Partner must prep a foot soak, a face mask, and a robe for you to enjoy.",
+      "point_cost": 200,
+      "category": "Luxury"
+    },
+    {
+      "title": "Nighttime Tea Service",
+      "description": "Partner makes you a perfect cup of tea or cocoa right as you get into bed.",
+      "point_cost": 50,
+      "category": "Romantic"
+    },
+    {
+      "title": "The Ultimate Compliment Card",
+      "description": "Partner must write down 3 things they admire about your personality and read them aloud.",
+      "point_cost": 50,
+      "category": "Emotional"
+    }
+  ]
+}

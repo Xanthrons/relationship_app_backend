@@ -21,13 +21,13 @@ const protect = async (req, res, next) => {
 const hasCouple = async (req, res, next) => {
     try {
         const result = await pool.query('SELECT couple_id FROM users WHERE id = $1', [req.user.id]);
-        const coupleId = result.rows[0]?.couple_id;
+        const couple_id = result.rows[0]?.couple_id; // Change variable name here
 
-        if (!coupleId) {
+        if (!couple_id) {
             return res.status(403).json({ error: "Access denied. You need a world for this." });
         }
 
-        req.user.coupleId = coupleId; 
+        req.user.couple_id = couple_id; // Change this to snake_case
         next();
     } catch (err) {
         res.status(500).json({ error: "Server error checking relationship status." });
@@ -54,7 +54,7 @@ const hasFullCouple = async (req, res, next) => {
             return res.status(403).json({ error: "This feature unlocks once your partner joins!" });
         }
 
-        req.user.coupleId = relationship.couple_id;
+        req.user.couple_id = relationship.couple_id; // Change this to snake_case
         next();
     } catch (err) {
         res.status(500).json({ error: "Security check failed." });

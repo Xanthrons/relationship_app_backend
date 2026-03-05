@@ -81,13 +81,13 @@ exports.googleAuth = async (req, res) => {
         let userRes = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
         let user = userRes.rows[0];
 
-        if (!user) {
-            const insertRes = await pool.query(
-                'INSERT INTO users (email, name, password_hash) VALUES ($1, $2, $3) RETURNING *',
-                [email, name, 'google-auth-account']
-            );
-            user = insertRes.rows[0];
-        }
+     if (!user) {
+    const insertRes = await pool.query(
+        'INSERT INTO users (email, name, password_hash) VALUES ($1, $2, $3) RETURNING id, email, name, couple_id', 
+        [email, name, 'google-auth-account']
+    );
+    user = insertRes.rows[0];
+}
 
         const token = generateToken(user.id);
         res.json({ user, token });

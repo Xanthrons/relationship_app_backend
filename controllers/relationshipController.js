@@ -393,7 +393,7 @@ exports.upsertSharedPicture = async (req, res) => {
     const dbClient = await pool.connect();
 
     try {
-        // 1. Basic Validation
+        // 1. Validation
         if (!req.file) return res.status(400).json({ error: "No image file provided." });
 
         // 2. Identify the Couple
@@ -401,27 +401,36 @@ exports.upsertSharedPicture = async (req, res) => {
         const coupleId = userRes.rows[0]?.couple_id;
 
         if (!coupleId) {
-            return res.status(400).json({ error: "No pairing found. Please pair with a partner first." });
+            return res.status(400).json({ error: "No pairing found." });
         }
 
-        // 3. Backend Compression (The Safety Net)
+        // 3. Backend Compression (Shrinking size before Cloudinary)
         const compressedBuffer = await sharp(req.file.buffer)
             .resize(1000, 1000, { fit: 'inside', withoutEnlargement: true })
-            .jpeg({ quality: 80 })
+            .jpeg({ quality: 75 }) // Reduced to 75 for even better storage savings
             .toBuffer();
 
-        const fileBase64 = `data:image/jpeg;base64,${compressedBuffer.toString('base64')}`;
+        // 4. Cloudinary Stream Upload (More efficient than Base64)
+        const uploadToCloudinary = () => {
+            return new Promise((resolve, reject) => {
+                const stream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: 'twofold_shared',
+                        public_id: `couple_${coupleId}`,
+                        overwrite: true,
+                        invalidate: true,
+                        resource_type: 'image'
+                    },
+                    (error, result) => {
+                        if (result) resolve(result);
+                        else reject(error);
+                    }
+                );
+                stream.end(compressedBuffer);
+            });
+        };
 
-        // 4. Cloudinary "Upsert" (Overwrite)
-        console.log(`♻️ Syncing shared image for couple_${coupleId}...`);
-        
-        const result = await cloudinary.uploader.upload(fileBase64, {
-            folder: 'twofold_shared',
-            public_id: `couple_${coupleId}`, 
-            overwrite: true,   // Replaces the old file on the server
-            invalidate: true,  // Clears the URL from Cloudinary's global cache (CDN)
-            resource_type: 'image'
-        });
+        const result = await uploadToCloudinary();
 
         // 5. Sync Database
         await dbClient.query(
@@ -431,13 +440,13 @@ exports.upsertSharedPicture = async (req, res) => {
 
         res.json({ 
             success: true, 
-            message: "Shared picture synced successfully!", 
+            message: "Compressed picture synced successfully! 📉", 
             url: result.secure_url 
         });
 
     } catch (err) {
-        const { status, error } = handleRelError(err, "Failed to sync image. Please try again.");
-        res.status(status).json({ error });
+        console.error("Upload Error:", err);
+        res.status(500).json({ error: "Failed to sync image." });
     } finally {
         dbClient.release();
     }
