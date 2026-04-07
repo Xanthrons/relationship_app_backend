@@ -1,0 +1,12 @@
+$kind: http-request
+name: Redeem Coupon
+url: "{{baseUrl}}/activities/redeem-coupon"
+method: POST
+body:
+  type: json
+  content: '{"taskId": 212}'
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3NDk1MzIwOCwiZXhwIjoxNzc3NTQ1MjA4fQ.CRYWU-l0InvvjxXoCXofJ9bJKOfA1_YBxDUo-5FFi5E
+order: 9000

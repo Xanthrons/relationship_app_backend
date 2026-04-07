@@ -1,0 +1,12 @@
+name: TwoFold_Dev
+values:
+  - key: baseUrl
+    value: ""
+    enabled: true
+  - key: token
+    value: ""
+    enabled: true
+  - key: inviteCode
+    value: ""
+    enabled: true
+color: null

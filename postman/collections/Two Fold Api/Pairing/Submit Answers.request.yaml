@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/relationship/submit-answers"
+method: POST
+body:
+  type: json
+  content: '{"answers": {"vibe": "chilled", "goal": "long-term"}}'
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc3MTcxNTM4OSwiZXhwIjoxNzc0MzA3Mzg5fQ.V9Ua_AU-lFhBxw9TNSP2wJfKVU5yMLOXMLGPNeRxRFE
+order: 2000

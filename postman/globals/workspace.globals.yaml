@@ -1,0 +1,8 @@
+name: Globals
+values:
+  - key: baseUrl
+    value: ''
+    enabled: true
+  - key: fira_token
+    value: ''
+    enabled: true

@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/moods/"
+method: POST
+body:
+  type: json
+  content: "{\r\n    \"score\": 1\r\n}"
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MjQ2MzQxMywiZXhwIjoxNzc1MDU1NDEzfQ.3IFXxFgWjYhg28XB97NwtvuWU1gnWPJXjz-4vqMYGy8
+order: 1000

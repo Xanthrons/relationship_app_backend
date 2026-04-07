@@ -1,0 +1,12 @@
+$kind: http-request
+name: Wheel Unfortunate items
+url: "{{baseUrl}}/wheels/items"
+method: GET
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 7000

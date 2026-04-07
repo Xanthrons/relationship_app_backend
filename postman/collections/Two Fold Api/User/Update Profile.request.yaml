@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/user/update"
+method: PUT
+body:
+  type: json
+  content: '{"nickname": "Ali", "avatar_id": "1", "rel_status":"Dating"}'
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4LCJpYXQiOjE3NzE0MDk3NzgsImV4cCI6MTc3NDAwMTc3OH0.alQ_5-iL7O5STioDplPYSy8u4UyzAMDnffSBuFaY7ck
+order: 2000

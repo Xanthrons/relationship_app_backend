@@ -1,0 +1,35 @@
+$kind: http-request
+name: Register (Creator)
+url: "{{baseUrl}}/auth/register"
+method: POST
+body:
+  type: json
+  content: '{"email": "jo12@test.com", "password": "password123", "name": "jelanos"}'
+scripts:
+  - type: afterResponse
+    code: "// 1. Check if a response actually came back\r
+
+      if (pm.response.code === 200 || pm.response.code === 201) {\r
+
+      \    const jsonData = pm.response.json();\r
+
+      \r
+
+      \    if (jsonData.token) {\r
+
+      \        // Saves to your TwoFold_Dev environment\r
+
+      \        pm.environment.set(\"token\", jsonData.token);\r
+
+      \        console.log(\"✅ Token successfully saved to environment!\");\r
+
+      \    }\r
+
+      } else {\r
+
+      \    console.log(\"❌ Request failed. Check your Body or Server
+      terminal.\");\r
+
+      }"
+    language: text/javascript
+order: 1000

@@ -1,0 +1,12 @@
+$kind: http-request
+name: Quest Verdict
+url: "{{baseUrl}}/activities/verdict"
+method: POST
+body:
+  type: json
+  content: '{"taskId": 1, "status": "failed"}'
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc3NTU1NjY0NywiZXhwIjoxNzc4MTQ4NjQ3fQ.5eNAQDEGgLahqgf6cW8K2kR-l6_dtrgjqmz0XVJbkgU
+order: 6000

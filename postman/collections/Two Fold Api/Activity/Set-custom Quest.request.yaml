@@ -1,0 +1,20 @@
+$kind: http-request
+name: Set-custom Quest
+url: "{{baseUrl}}/activities/set-custom"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \"taskId\": 21,\r
+
+    \"customPrompt\": \"I choose: You have to cook dinner tonight while wearing
+    a funny hat.\"\r
+
+    }"
+auth:
+  credentials:
+    - key: token
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc3NTAzODkwNSwiZXhwIjoxNzc3NjMwOTA1fQ.bG-WMQ4vON_U0pXYYn1FGbOA0dl1jd_AMD7fsaPb344
+  type: bearer
+order: 10000

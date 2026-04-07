@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/daily/task"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MjQ2MTc1NywiZXhwIjoxNzc1MDUzNzU3fQ.h1R1AuFcCa4uiHvXPA3zCLZpsT2Uy_kXfOlG0_BqpXM
+order: 1000

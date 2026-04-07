@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/relationship/onboard-creator"
+method: POST
+body:
+  type: json
+  content: '{"nickname": "test", "avatar_id": "3", "gender": "Female",
+    "rel_status": "dating"}'
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc3MTg0Njc4NywiZXhwIjoxNzc0NDM4Nzg3fQ.9Itrtl7v4xf7v-IcpDGKJt-j2Ug6h5ZyNoIr-hud4W4
+order: 1000

@@ -1,0 +1,12 @@
+$kind: http-request
+name: spin wheel
+url: "{{baseUrl}}/wheels/spin-result"
+method: POST
+body:
+  type: json
+  content: "{\r\n\"taskId\": 1\r\n}"
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 8000

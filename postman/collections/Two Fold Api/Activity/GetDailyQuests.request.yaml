@@ -1,0 +1,9 @@
+$kind: http-request
+name: GetDailyQuests
+url: "{{baseUrl}}/activities/today"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 1000

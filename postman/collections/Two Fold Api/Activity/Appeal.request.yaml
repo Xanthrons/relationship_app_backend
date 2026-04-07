@@ -1,0 +1,12 @@
+$kind: http-request
+name: Appeal
+url: "{{baseUrl}}/activities/appeal"
+method: POST
+body:
+  type: json
+  content: '{"taskId": 1, "appealText": "I was busy!" }'
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 4000
