@@ -1,13 +1,18 @@
 const router = require('express').Router();
 const punishmentController = require('../controllers/punishmentController');
-const { protect } = require('../middlewares/authMiddleware');
+const { protect, hasCouple } = require('../middlewares/authMiddleware');
+const upload = require('../middlewares/multer');
 
 router.use(protect);
+router.use(hasCouple);
 
-// Record the result of the wheel spin
-router.post('/roll', punishmentController.recordPunishment);
+// 1. Record the punishment assignment (e.g., "Do 50 pushups")
+router.post('/custom', punishmentController.setCustomPunishment);
 
-// Partner confirms the punishment was actually performed
-router.post('/confirm', punishmentController.markPunishmentDone);
+// 2. Submit proof (Image upload via Multer)
+router.post('/complete', upload.single('image'), punishmentController.completePunishment);
+
+// 3. Judge approves the proof and releases the user
+router.post('/mark-done', punishmentController.markPunishmentDone);
 
 module.exports = router;

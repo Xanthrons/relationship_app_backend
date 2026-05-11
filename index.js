@@ -13,10 +13,12 @@ const relationshipRoutes = require('./routers/relationshipRoutes');
 const notificationRoutes = require('./routers/notificationRoutes');
 const moodRoutes = require('./routers/moodRoutes');
 const highlightRoutes = require('./routers/highlightRoutes');
-const dailyRoutes = require('./routers/dailyRoutes'); // Fixed typo from 'dailRoutes'
-const questRoutes = require('./routers/questRoutes');      // NEW
-const punishmentRoutes = require('./routers/punishmentRoutes'); // NEW
-const dashboardRoutes = require('./routers/dashboardRoutes');   // NEW
+const dailyRoutes = require('./routers/dailyRoutes'); 
+const activityRoutes = require('./routers/activityRoutes'); 
+const punishmentRoutes = require('./routers/punishmentRoutes'); 
+const dashboardRoutes = require('./routers/dashboardRoutes');   
+const wheelRoutes = require('./routers/wheelRoutes'); 
+const vaultRoutes = require('./routers/vaultRoutes'); 
 
 const app = express();
 const server = http.createServer(app); 
@@ -84,9 +86,11 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/moods', moodRoutes);
 app.use('/api/highlights', highlightRoutes);
 app.use('/api/daily', dailyRoutes);
-app.use('/api/quests', questRoutes);           // MOUNTED
-app.use('/api/punishments', punishmentRoutes); // MOUNTED
-app.use('/api/dashboard', dashboardRoutes);     // MOUNTED
+app.use('/api/activities', activityRoutes);           
+app.use('/api/punishments', punishmentRoutes); 
+app.use('/api/dashboard', dashboardRoutes);     
+app.use('/api/wheels', wheelRoutes);     
+app.use('/api/vault', vaultRoutes);     
 
 // --- 7. GLOBAL ERROR HANDLING ---
 app.use((err, req, res, next) => {

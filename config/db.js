@@ -4,7 +4,8 @@ require('dotenv').config();
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false, // Required for Neon/Cloud providers
+    rejectUnauthorized: false,
+    sslmode: 'verify-full' 
   },
 });
 
