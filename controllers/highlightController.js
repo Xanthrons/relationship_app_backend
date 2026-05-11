@@ -6,6 +6,7 @@ const { createNotification } = require('../services/notificationService');
  * Triggered when a user submits their daily entry.
  */
 exports.upsertHighlightGratitude = async (req, res) => {
+    console.log("POST request received for highlights!");
     const { highlight, gratitude } = req.body;
     const userId = req.user.id;
     const coupleId = req.user.couple_id;
