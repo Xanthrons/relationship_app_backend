@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const activityController = require('../controllers/activityController');
 const { protect, hasCouple } = require('../middlewares/authMiddleware');
+const upload = require('../middlewares/multer');
 
 router.use(protect);
 router.use(hasCouple);
@@ -11,7 +12,7 @@ router.get('/today', activityController.getTodayActivity);
 
 // --- QUEST & TRIAL FLOW ---
 // Partner submits 'approved' or 'failed'
-router.post('/claim-success', authMiddleware, upload.single('image'), activityController.claimQuestSuccess);
+router.post('/claim-success', upload.single('image'), activityController.claimQuestSuccess);
 router.post('/verdict', activityController.submitVerdict);
 // User appeals a 'failed' verdict
 router.post('/appeal', activityController.submitAppeal);
