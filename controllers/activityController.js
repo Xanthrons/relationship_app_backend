@@ -248,6 +248,37 @@ exports.rollSavology = async (req, res) => {
 /**
  * 3. QUEST VERDICTS & APPEALS
  */
+exports.claimQuestSuccess = async (req, res) => {
+    const { taskId } = req.body;
+    const userId = req.user.id;
+    const isSolo = await checkSoloStatus(userId);
+    const proofUrl = req.file ? req.file.path : null; // Multer provides this
+
+    try {
+        const result = await pool.query(
+            `UPDATE daily_tasks 
+             SET status = 'submitted', proof_url = $1, punishment_submitted_at = NOW() 
+             WHERE id = $2 AND user_id = $3 RETURNING couple_id`,
+            [proofUrl, taskId, userId]
+        );
+
+        if (result.rows.length === 0) return res.status(404).json({ error: "Task not found." });
+
+        if (!isSolo) {
+            const partnerId = await getPartnerId(userId);
+            await createNotification(partnerId, userId, 'quest_submitted', "Quest completed! Verify the proof. 📸");
+            req.app.get('socketio').to(`couple_${result.rows[0].couple_id}`).emit('quest_update', { status: 'submitted', taskId });
+        } else {
+            // In Solo mode, we auto-approve since there is no partner
+            await pool.query("UPDATE daily_tasks SET status = 'approved' WHERE id = $1", [taskId]);
+            await pool.query("UPDATE users SET points = points + 20 WHERE id = $1", [userId]);
+        }
+
+        res.json({ success: true, message: "Submission successful." });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
 exports.submitVerdict = async (req, res) => {
     const { taskId, status } = req.body; 
     const userId = req.user.id;

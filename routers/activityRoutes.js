@@ -11,6 +11,7 @@ router.get('/today', activityController.getTodayActivity);
 
 // --- QUEST & TRIAL FLOW ---
 // Partner submits 'approved' or 'failed'
+router.post('/claim-success', authMiddleware, upload.single('image'), activityController.claimQuestSuccess);
 router.post('/verdict', activityController.submitVerdict);
 // User appeals a 'failed' verdict
 router.post('/appeal', activityController.submitAppeal);
