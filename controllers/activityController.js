@@ -202,29 +202,35 @@ exports.rollSavology = async (req, res) => {
         }
 
         // --- CASE B: MOVEMENT ---
-        let newPosition = (user.savology_position + diceRoll) % SAVOLOGY_BOARD.length;
-        let landedTile = { ...SAVOLOGY_BOARD[newPosition] };
+        let firstMove = (user.savology_position + diceRoll) % SAVOLOGY_BOARD.length;
+        let landedTile = { ...SAVOLOGY_BOARD[firstMove] };
+        let finalPosition = firstMove;
 
         // Chance Logic
         if (landedTile.type === 'chance') {
             const secondRoll = Math.floor(Math.random() * 6) + 1;
-            diceRoll += secondRoll;
-            newPosition = (user.savology_position + diceRoll) % SAVOLOGY_BOARD.length;
-            landedTile = { ...SAVOLOGY_BOARD[newPosition] };
+            // Move forward FROM the chance tile, not the starting point
+            finalPosition = (firstMove + secondRoll) % SAVOLOGY_BOARD.length;
+            landedTile = { ...SAVOLOGY_BOARD[finalPosition] };
+            
+            // Update diceRoll for the response so the frontend knows total distance
+            diceRoll += secondRoll; 
         }
 
-        // Board Transformer (Gender Swap)
-        const isMale = user.gender === 'male';
+        // 3. Board Transformer (Gender Swap)
+        const isMale = user.gender === 'Boy'; // Match your JSON "Boy"/"Girl"
         const partnerName = isMale ? "Girlfriend" : "Boyfriend";
         const partnerTitle = isMale ? "Queen" : "King";
+        
         landedTile.name = landedTile.name.replace("{{partner}}", partnerName);
         landedTile.desc = landedTile.desc.replace("{{partner_title}}", partnerTitle);
 
         let newStatus = landedTile.type === 'jail' ? 'jail' : 'free';
 
+        // 4. Update Database with finalPosition
         await pool.query(
             "UPDATE users SET savology_position = $1, points = points + $2, status = $3 WHERE id = $4", 
-            [newPosition, landedTile.reward || 0, newStatus, userId]
+            [finalPosition, landedTile.reward || 0, newStatus, userId]
         );
 
         // Notify Partner of the Move
@@ -237,7 +243,13 @@ exports.rollSavology = async (req, res) => {
         await upsertSavologyTask(userId, user.couple_id, today);
         await pool.query('COMMIT');
 
-        res.json({ success: true, roll: diceRoll, newPosition, reward: landedTile.reward, tile: landedTile });
+        res.json({ 
+            success: true, 
+            roll: diceRoll, 
+            newPosition: finalPosition, 
+            reward: landedTile.reward, 
+            tile: landedTile 
+        });
 
     } catch (err) { 
         if (pool) await pool.query('ROLLBACK');
@@ -251,32 +263,42 @@ exports.rollSavology = async (req, res) => {
 exports.claimQuestSuccess = async (req, res) => {
     const { taskId } = req.body;
     const userId = req.user.id;
-    const isSolo = await checkSoloStatus(userId);
-    const proofUrl = req.file ? req.file.path : null; // Multer provides this
 
     try {
+        const isSolo = await checkSoloStatus(userId);
+        // Photo is now optional; if no file is sent, proofUrl is null
+        const proofUrl = req.file ? req.file.path : null;
+
+        // Cleaned up query: removed punishment_submitted_at
         const result = await pool.query(
             `UPDATE daily_tasks 
-             SET status = 'submitted', proof_url = $1, punishment_submitted_at = NOW() 
+             SET status = 'submitted', proof_url = $1 
              WHERE id = $2 AND user_id = $3 RETURNING couple_id`,
             [proofUrl, taskId, userId]
         );
 
-        if (result.rows.length === 0) return res.status(404).json({ error: "Task not found." });
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Mission not found." });
+        }
 
         if (!isSolo) {
             const partnerId = await getPartnerId(userId);
-            await createNotification(partnerId, userId, 'quest_submitted', "Quest completed! Verify the proof. 📸");
-            req.app.get('socketio').to(`couple_${result.rows[0].couple_id}`).emit('quest_update', { status: 'submitted', taskId });
+            if (partnerId) {
+                await createNotification(partnerId, userId, 'quest_submitted', "Mission accomplished! Check it out. ✨");
+            }
+            
+            const io = req.app.get('socketio');
+            if (io) io.to(`couple_${result.rows[0].couple_id}`).emit('quest_update', { status: 'submitted', taskId });
         } else {
-            // In Solo mode, we auto-approve since there is no partner
+            // Auto-approve for Solo Mode
             await pool.query("UPDATE daily_tasks SET status = 'approved' WHERE id = $1", [taskId]);
             await pool.query("UPDATE users SET points = points + 20 WHERE id = $1", [userId]);
         }
 
-        res.json({ success: true, message: "Submission successful." });
+        res.json({ success: true, message: "Mission logged successfully." });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error("CLAIM_ERROR:", err.message);
+        res.status(500).json({ error: "Database synchronization failed." });
     }
 };
 exports.submitVerdict = async (req, res) => {
